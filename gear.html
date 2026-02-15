@@ -9,137 +9,156 @@
   <link rel="icon" href="./assets/icons/favicon-v2.ico" sizes="any">
   <link rel="apple-touch-icon" href="./assets/icons/apple-touch-icon.png" sizes="180x180">
 
-  <style>
-    /* 配合 KPA 觀察日誌風格的 Gear 頁面微調 */
-    :root {
-      --label-color: #ccc;
-      --border-light: #f2f2f2;
-    }
+ <style>
+  /* 配合 KPA 觀察日誌風格的 Gear 頁面微調 */
+  :root {
+    --label-color: #ccc;
+    --border-light: #f2f2f2;
+  }
 
-    .gear-controls {
-      display: flex;
-      gap: 15px;
-      margin: 20px 0 30px;
-      border-bottom: 1px solid var(--border-light);
-      padding-bottom: 15px;
-    }
-    .btn-mini {
-      background: none;
-      border: none;
-      padding: 0;
-      font-size: 0.75rem;
-      color: #888;
-      cursor: pointer;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-    }
-    .btn-mini:hover { color: #111; }
+  /* 頂部控制按鈕：改為極簡文字感 */
+  .gear-controls {
+    display: flex; 
+    gap: 15px; 
+    margin: 20px 0 30px;
+    border-bottom: 1px solid var(--border-light);
+    padding-bottom: 15px;
+  }
+  .btn-mini {
+    background: none; 
+    border: none; 
+    padding: 0; 
+    font-size: 0.75rem; 
+    color: #888; 
+    cursor: pointer;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+  .btn-mini:hover { color: #111; }
 
-    #summaryBox {
-      background: none;
-      border: none;
-      padding: 0;
-      margin-bottom: 40px;
-    }
-    #summaryBox .data-row {
-      border-bottom: 1px solid var(--border-light);
-      padding: 12px 0;
-      font-size: 0.95rem;
-    }
-    #summaryBox .num {
-      font-family: "Helvetica Neue", Arial, sans-serif;
-      color: #111;
-    }
+  /* 總結區塊：取消框線，改用大氣的數據排列 */
+  #summaryBox {
+    background: none;
+    border: none;
+    padding: 0;
+    margin-bottom: 40px;
+  }
+  #summaryBox .data-row {
+    border-bottom: 1px solid var(--border-light);
+    padding: 12px 0;
+    font-size: 0.95rem;
+  }
+  #summaryBox .num {
+    font-family: "Helvetica Neue", Arial, sans-serif;
+    color: #111;
+  }
 
-    details.gear-section { margin-bottom: 10px; }
-    details.gear-section > summary {
-      cursor: pointer;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 15px 0;
-      font-size: 0.85rem;
-      color: var(--label-color);
-      letter-spacing: 0.1em;
-      list-style: none;
-    }
-    details.gear-section > summary::-webkit-details-marker { display: none; }
-    details.gear-section > summary strong { color: #555; font-weight: 500; }
+  /* 裝備分類標題 */
+  details.gear-section {
+    margin-bottom: 10px;
+  }
+  details.gear-section > summary {
+    cursor: pointer;
+    display: flex; 
+    justify-content: space-between; 
+    align-items: center; 
+    padding: 15px 0;
+    font-size: 0.85rem;
+    color: var(--label-color);
+    letter-spacing: 0.1em;
+    list-style: none; /* 隱藏預設箭頭 */
+  }
+  details.gear-section > summary::-webkit-details-marker { display: none; }
+  details.gear-section > summary strong { color: #555; font-weight: 500; }
 
-    .gear-cat {
-      border: none;
-      background: none;
-      padding: 0;
-      margin-bottom: 30px;
-    }
+  /* 裝備列：極簡化 */
+  .gear-cat {
+    border: none;
+    background: none;
+    padding: 0;
+    margin-bottom: 30px;
+  }
 
-    .gear-item {
-      display: flex;
-      justify-content: space-between;
-      align-items: flex-start;
-      padding: 8px 0;
-      border-bottom: 1px solid var(--border-light);
-    }
+  /* --- 介於兩者之間的平衡版 --- */
+  .gear-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding: 8px 0;           /* 從 4px 調回 8px，給予適度的呼吸空間 */
+    border-bottom: 1px solid var(--border-light);
+  }
 
-    .gear-name {
-      font-size: 0.95rem;
-      color: #111;
-      line-height: 1.3;
-      margin-bottom: 1px;
-    }
+  .gear-name {
+    font-size: 0.95rem;
+    color: #111;
+    line-height: 1.3;         /* 從 1.1 調回 1.3，文字不再感到壓迫 */
+    margin-bottom: 1px;       /* 給標題與備註 1px 的微小空隙 */
+  }
 
-    .small {
-      font-size: 0.75rem;
-      color: #aaa;
-      line-height: 1.3;
-      margin-top: 1px;
-      display: block;
-    }
+  .small {
+    font-size: 0.75rem;       /* 字體稍微調回 0.75rem，確保易讀性 */
+    color: #aaa;
+    line-height: 1.3;
+    margin-top: 1px;          /* 保持輕微的間距 */
+    display: block;
+  }
 
-    .gear-right {
-      display: flex;
-      gap: 8px;
-      align-items: center;
-      padding-top: 2px;
-    }
+  /* ✅ 合併後的 gear-right：保留對齊微調 + 原本的乾淨風格 */
+  .gear-right {
+    display: flex; 
+    gap: 8px; 
+    align-items: center;
+    padding-top: 2px;         /* 補一點點高度，讓輸入框對齊標題而非備註 */
+  }
 
-    .gear-right .t {
-      border: none;
-      background: #f9f9f9;
-      font-size: 0.7rem;
-      color: #999;
-      padding: 4px 6px;
-      border-radius: 4px;
-      cursor: pointer;
-      appearance: none;
-    }
-    .gear-right .w {
-      width: 65px;
-      border: none;
-      border-bottom: 1px solid #eee;
-      padding: 4px 0;
-      font-size: 0.9rem;
-      text-align: right;
-      font-family: "Helvetica Neue", monospace;
-      color: #333;
-      outline: none;
-    }
-    .gear-right .w:focus { border-bottom-color: #111; }
+  /* 右側輸入區：輕量化 */
+  .gear-right .t {
+    border: none;
+    background: #f9f9f9;
+    font-size: 0.7rem;
+    color: #999;
+    padding: 4px 6px;
+    border-radius: 4px;
+    cursor: pointer;
+    appearance: none; /* 隱藏下拉箭頭讓它更乾淨 */
+  }
+  .gear-right .w {
+    width: 65px;
+    border: none;
+    border-bottom: 1px solid #eee;
+    padding: 4px 0;
+    font-size: 0.9rem;
+    text-align: right;
+    font-family: "Helvetica Neue", monospace;
+    color: #333;
+    outline: none;
+  }
+  .gear-right .w:focus { border-bottom-color: #111; }
 
-    .is-hidden { display: none !important; }
+  .is-hidden {
+    display: none !important;
+  }
+/* 空白重量提示：淡灰 + ⚠︎ */
+.gear-item.is-empty .gear-name { color: #999; }
+.gear-item.is-empty .small { color: #bbb; }
+.gear-item.is-empty .w { border-bottom-color: #ddd; color: #aaa; }
 
-    .gear-item.is-empty .gear-name { color: #999; }
-    .gear-item.is-empty .small { color: #bbb; }
-    .gear-item.is-empty .w { border-bottom-color: #ddd; color: #aaa; }
-
-    .gear-warn {
-      font-size: 0.85rem;
-      color: #bbb;
-      margin-left: 6px;
-      user-select: none;
-    }
-  </style>
+.gear-warn {
+  font-size: 0.85rem;
+  color: #bbb;
+  margin-left: 6px;
+  user-select: none;
+}
+</style>
 </head>
+
+<script>
+  fetch('/nav.html')
+    .then(res => res.text())
+    .then(html => {
+      document.getElementById('nav-placeholder').innerHTML = html;
+    });
+</script>
 
 <body id="top" class="narrow">
   <div id="nav-placeholder"></div>
@@ -162,34 +181,1710 @@
       <button type="button" class="btn-mini" id="exportCSV">CSV 匯出</button>
     </div>
 
-    <!-- ✅ 以下保持你的原內容不動（你貼的那一大段 details... 全部留著） -->
-    <!-- 你原本從 <details class="gear-section"...> 到結尾的內容，請照貼回來 -->
-    <!-- ⚠️ 注意：你貼文中「衛生」那段開始有 <details> 沒關閉的疑慮，我下一步會一起修 nav 後順便幫你查這段 -->
+    
+    <details class="gear-section" open>
+      <summary>
+        <span>車身</span>
+        <span class="num">小計：<strong><span class="cat-sum" data-cat="0">—</span> g</strong></span>
+      </summary>
+      <div class="box gear-cat" data-cat="0">
+        
+      <div class="data-row gear-item" data-type="base">
+        <div class="gear-left">
+          <div class="gear-name">Breezer Radar Expert 480</div>
+          <div class="small">Cherry Cola</div>
+        </div>
+        <div class="gear-right">
+          <select class="t" aria-label="Breezer Radar Expert 480 類型">
+            <option value="base" selected>base</option>
+            <option value="worn" >worn</option>
+            <option value="consumable" >consumable</option>
+          </select>
+          <input class="w" inputmode="numeric" placeholder="g" value="12590" aria-label="Breezer Radar Expert 480 重量">
+        </div>
+      </div>
+    
 
-    <!-- 你原內容開始 -->
-    <!--（為了不在這裡重複貼到爆炸：你把你剛剛貼的 main 內所有 details 區塊原封不動貼進來即可）-->
-    <!-- 你原內容結束 -->
+      <div class="data-row gear-item" data-type="base">
+        <div class="gear-left">
+          <div class="gear-name">Pelago Commuter Front Rack (S)</div>
+          <div class="small">幅150 × 奥行270mm／耐荷重：10kg</div>
+        </div>
+        <div class="gear-right">
+          <select class="t" aria-label="Pelago Commuter Front Rack (S) 類型">
+            <option value="base" selected>base</option>
+            <option value="worn" >worn</option>
+            <option value="consumable" >consumable</option>
+          </select>
+          <input class="w" inputmode="numeric" placeholder="g" value="650" aria-label="Pelago Commuter Front Rack (S) 重量">
+        </div>
+      </div>
+    
+
+      <div class="data-row gear-item" data-type="base">
+        <div class="gear-left">
+          <div class="gear-name">ADEPT ADVENTURE REAR RACK</div>
+          <div class="small">最大荷重：上面10kg、両側面18kg（片側9kg）、総荷重25kg</div>
+        </div>
+        <div class="gear-right">
+          <select class="t" aria-label="ADEPT ADVENTURE REAR RACK 類型">
+            <option value="base" selected>base</option>
+            <option value="worn" >worn</option>
+            <option value="consumable" >consumable</option>
+          </select>
+          <input class="w" inputmode="numeric" placeholder="g" value="825" aria-label="ADEPT ADVENTURE REAR RACK 重量">
+        </div>
+      </div>
+    
+
+      <div class="data-row gear-item" data-type="base">
+        <div class="gear-left">
+          <div class="gear-name">MKS GAMMA</div>
+          
+        </div>
+        <div class="gear-right">
+          <select class="t" aria-label="MKS GAMMA 類型">
+            <option value="base" selected>base</option>
+            <option value="worn" >worn</option>
+            <option value="consumable" >consumable</option>
+          </select>
+          <input class="w" inputmode="numeric" placeholder="g" value="450" aria-label="MKS GAMMA 重量">
+        </div>
+      </div>
+    
+      </div>
+    </details>
+    
+
+    <details class="gear-section" open>
+      <summary>
+        <span>包架</span>
+        <span class="num">小計：<strong><span class="cat-sum" data-cat="1">—</span> g</strong></span>
+      </summary>
+      <div class="box gear-cat" data-cat="1">
+        
+      <div class="data-row gear-item" data-type="base">
+        <div class="gear-left">
+          <div class="gear-name">Decathlon ROCKRIDER 24L IPX6 防水馬鞍袋 ADVT 900</div>
+          <div class="small">承重14kg</div>
+        </div>
+        <div class="gear-right">
+          <select class="t" aria-label="Decathlon ROCKRIDER 24L IPX6 防水馬鞍袋 ADVT 900 類型">
+            <option value="base" selected>base</option>
+            <option value="worn" >worn</option>
+            <option value="consumable" >consumable</option>
+          </select>
+          <input class="w" inputmode="numeric" placeholder="g" value="1050" aria-label="Decathlon ROCKRIDER 24L IPX6 防水馬鞍袋 ADVT 900 重量">
+        </div>
+      </div>
+      
+      <div class="data-row gear-item" data-type="base">
+        <div class="gear-left">
+          <div class="gear-name">Decathlon RIVERSIDE 24L IPX6 防水馬鞍袋 ADVT 900</div>
+          <div class="small">承重14kg</div>
+        </div>
+        <div class="gear-right">
+          <select class="t" aria-label="Decathlon RIVERSIDE 24L IPX6 防水馬鞍袋 ADVT 900 類型">
+            <option value="base" selected>base</option>
+            <option value="worn" >worn</option>
+            <option value="consumable" >consumable</option>
+          </select>
+          <input class="w" inputmode="numeric" placeholder="g" value="1190" aria-label="Decathlon RIVERSIDE 24L IPX6 防水馬鞍袋 ADVT 900
+ 重量">
+        </div>
+      </div>    
+
+
+      <div class="data-row gear-item" data-type="base">
+        <div class="gear-left">
+          <div class="gear-name">BACH ITSY BITSY 30L</div>
+          <div class="small">或Decathlon 55L旅行袋</div>
+        </div>
+        <div class="gear-right">
+          <select class="t" aria-label="BACH ITSY BITSY 30L 類型">
+            <option value="base" selected>base</option>
+            <option value="worn" >worn</option>
+            <option value="consumable" >consumable</option>
+          </select>
+          <input class="w" inputmode="numeric" placeholder="g" value="300" aria-label="BACH ITSY BITSY 30L 重量">
+        </div>
+      </div>
+    
+
+      <div class="data-row gear-item" data-type="base">
+        <div class="gear-left">
+          <div class="gear-name">車尾包</div>
+          
+        </div>
+        <div class="gear-right">
+          <select class="t" aria-label="車尾包 類型">
+            <option value="base" selected>base</option>
+            <option value="worn" >worn</option>
+            <option value="consumable" >consumable</option>
+          </select>
+          <input class="w" inputmode="numeric" placeholder="g" value="110" aria-label="車尾包 重量">
+        </div>
+      </div>
+    
+
+      <div class="data-row gear-item" data-type="base">
+        <div class="gear-left">
+          <div class="gear-name">Decathlon ROCKRIDER 手機架</div>
+          
+        </div>
+        <div class="gear-right">
+          <select class="t" aria-label="Decathlon ROCKRIDER 手機架 類型">
+            <option value="base" selected>base</option>
+            <option value="worn" >worn</option>
+            <option value="consumable" >consumable</option>
+          </select>
+          <input class="w" inputmode="numeric" placeholder="g" value="" aria-label="Decathlon ROCKRIDER 手機架 重量">
+        </div>
+      </div>
+    
+
+      <div class="data-row gear-item" data-type="base">
+        <div class="gear-left">
+          <div class="gear-name">水壺架*2</div>
+          
+        </div>
+        <div class="gear-right">
+          <select class="t" aria-label="水壺架*2 類型">
+            <option value="base" selected>base</option>
+            <option value="worn" >worn</option>
+            <option value="consumable" >consumable</option>
+          </select>
+          <input class="w" inputmode="numeric" placeholder="g" value="84" aria-label="水壺架*2 重量">
+        </div>
+      </div>
+    
+
+      <div class="data-row gear-item" data-type="base">
+        <div class="gear-left">
+          <div class="gear-name">SEA TO SUMMIT 70D  13L</div>
+          
+        </div>
+        <div class="gear-right">
+          <select class="t" aria-label="SEA TO SUMMIT 70D  13L 類型">
+            <option value="base" selected>base</option>
+            <option value="worn" >worn</option>
+            <option value="consumable" >consumable</option>
+          </select>
+          <input class="w" inputmode="numeric" placeholder="g" value="81" aria-label="SEA TO SUMMIT 70D  13L 重量">
+        </div>
+      </div>
+    
+
+      <div class="data-row gear-item" data-type="base">
+        <div class="gear-left">
+          <div class="gear-name">行李束帶（兩條）</div>
+        </div>
+        <div class="gear-right">
+          <select class="t" aria-label="行李束帶（兩條） 類型">
+            <option value="base" selected>base</option>
+            <option value="worn" >worn</option>
+            <option value="consumable" >consumable</option>
+          </select>
+          <input class="w" inputmode="numeric" placeholder="g" value="82" aria-label="行李束帶（兩條） 重量">
+        </div>
+      </div>
+    
+      </div>
+    </details>
+    
+
+    <details class="gear-section" open>
+      <summary>
+        <span>配件</span>
+        <span class="num">小計：<strong><span class="cat-sum" data-cat="2">—</span> g</strong></span>
+      </summary>
+      <div class="box gear-cat" data-cat="2">
+        
+      <div class="data-row gear-item" data-type="base">
+        <div class="gear-left">
+          <div class="gear-name">車鎖1號</div>
+          
+        </div>
+        <div class="gear-right">
+          <select class="t" aria-label="車鎖1號 類型">
+            <option value="base" selected>base</option>
+            <option value="worn" >worn</option>
+            <option value="consumable" >consumable</option>
+          </select>
+          <input class="w" inputmode="numeric" placeholder="g" value="329" aria-label="車鎖1號 重量">
+        </div>
+      </div>
+    
+
+      <div class="data-row gear-item" data-type="base">
+        <div class="gear-left">
+          <div class="gear-name">車鎖2號</div>
+          
+        </div>
+        <div class="gear-right">
+          <select class="t" aria-label="車鎖2號 類型">
+            <option value="base" selected>base</option>
+            <option value="worn" >worn</option>
+            <option value="consumable" >consumable</option>
+          </select>
+          <input class="w" inputmode="numeric" placeholder="g" value="280" aria-label="車鎖2號 重量">
+        </div>
+      </div>
+    
+
+      <div class="data-row gear-item" data-type="base">
+        <div class="gear-left">
+          <div class="gear-name">車尾警示燈</div>
+          
+        </div>
+        <div class="gear-right">
+          <select class="t" aria-label="車尾警示燈 類型">
+            <option value="base" selected>base</option>
+            <option value="worn" >worn</option>
+            <option value="consumable" >consumable</option>
+          </select>
+          <input class="w" inputmode="numeric" placeholder="g" value="34" aria-label="車尾警示燈 重量">
+        </div>
+      </div>
+
+
+      <div class="data-row gear-item" data-type="base">
+        <div class="gear-left">
+          <div class="gear-name">AAA電池（兩顆）</div>
+          
+        </div>
+        <div class="gear-right">
+          <select class="t" aria-label="AAA電池（兩顆） 類型">
+            <option value="base" selected>base</option>
+            <option value="worn" >worn</option>
+            <option value="consumable" >consumable</option>
+          </select>
+          <input class="w" inputmode="numeric" placeholder="g" value="23" aria-label="AAA電池（兩顆） 重量">
+        </div>
+      </div>
+    
+
+      <div class="data-row gear-item" data-type="worn">
+        <div class="gear-left">
+          <div class="gear-name">安全帽警示燈</div>
+          
+        </div>
+        <div class="gear-right">
+          <select class="t" aria-label="安全帽警示燈 類型">
+            <option value="base" >base</option>
+            <option value="worn" selected>worn</option>
+            <option value="consumable" >consumable</option>
+          </select>
+          <input class="w" inputmode="numeric" placeholder="g" value="22" aria-label="安全帽警示燈 重量">
+        </div>
+      </div>
+    
+
+      <div class="data-row gear-item" data-type="base">
+        <div class="gear-left">
+          <div class="gear-name">電子打氣筒</div>
+          
+        </div>
+        <div class="gear-right">
+          <select class="t" aria-label="電子打氣筒 類型">
+            <option value="base" selected>base</option>
+            <option value="worn" >worn</option>
+            <option value="consumable" >consumable</option>
+          </select>
+          <input class="w" inputmode="numeric" placeholder="g" value="150" aria-label="電子打氣筒 重量">
+        </div>
+      </div>
+
+
+      <div class="data-row gear-item" data-type="base">
+        <div class="gear-left">
+          <div class="gear-name">airborne 打氣筒</div>
+          
+        </div>
+        <div class="gear-right">
+          <select class="t" aria-label="airborne 打氣筒 類型">
+            <option value="base" selected>base</option>
+            <option value="worn" >worn</option>
+            <option value="consumable" >consumable</option>
+          </select>
+          <input class="w" inputmode="numeric" placeholder="g" value="77" aria-label="airborne 打氣筒 重量">
+        </div>
+      </div>
+
+    
+      </div>
+    </details>
+    
+
+    <details class="gear-section" open>
+      <summary>
+        <span>維修</span>
+        <span class="num">小計：<strong><span class="cat-sum" data-cat="3">—</span> g</strong></span>
+      </summary>
+      <div class="box gear-cat" data-cat="3">
+        
+      <div class="data-row gear-item" data-type="base">
+        <div class="gear-left">
+          <div class="gear-name">Decathlon 工具組 100</div>
+          
+        </div>
+        <div class="gear-right">
+          <select class="t" aria-label="Decathlon 工具組 100 類型">
+            <option value="base" selected>base</option>
+            <option value="worn" >worn</option>
+            <option value="consumable" >consumable</option>
+          </select>
+          <input class="w" inputmode="numeric" placeholder="g" value="97" aria-label="Decathlon 工具組 100 重量">
+        </div>
+      </div>
+
+      
+      <div class="data-row gear-item" data-type="base">
+        <div class="gear-left">
+          <div class="gear-name">Decathlon 挖胎棒</div>
+          
+        </div>
+        <div class="gear-right">
+          <select class="t" aria-label="Decathlon 挖胎棒 類型">
+            <option value="base" selected>base</option>
+            <option value="worn" >worn</option>
+            <option value="consumable" >consumable</option>
+          </select>
+          <input class="w" inputmode="numeric" placeholder="g" value="" aria-label="Decathlon 挖胎棒 重量">
+        </div>
+      </div>
+    
+
+      <div class="data-row gear-item" data-type="base">
+        <div class="gear-left">
+          <div class="gear-name">鏈條快扣</div>
+          <div class="small">當地補貨</div>
+        </div>
+        <div class="gear-right">
+          <select class="t" aria-label="鏈條快扣 類型">
+            <option value="base" selected>base</option>
+            <option value="worn" >worn</option>
+            <option value="consumable" >consumable</option>
+          </select>
+          <input class="w" inputmode="numeric" placeholder="g" value="" aria-label="鏈條快扣 重量">
+        </div>
+      </div>
+    
+
+      <div class="data-row gear-item" data-type="consumable">
+        <div class="gear-left">
+          <div class="gear-name">鍊條油</div>
+          <div class="small">當地補貨</div>
+        </div>
+        <div class="gear-right">
+          <select class="t" aria-label="鍊條油 類型">
+            <option value="base" >base</option>
+            <option value="worn" >worn</option>
+            <option value="consumable" selected>consumable</option>
+          </select>
+          <input class="w" inputmode="numeric" placeholder="g" value="" aria-label="鍊條油 重量">
+        </div>
+      </div>
+    
+
+      <div class="data-row gear-item" data-type="base">
+        <div class="gear-left">
+          <div class="gear-name">內胎 *2</div>
+          
+        </div>
+        <div class="gear-right">
+          <select class="t" aria-label="內胎 *2 類型">
+            <option value="base" selected>base</option>
+            <option value="worn" >worn</option>
+            <option value="consumable" >consumable</option>
+          </select>
+          <input class="w" inputmode="numeric" placeholder="g" value="" aria-label="內胎 *2 重量">
+        </div>
+      </div>
+    
+
+      <div class="data-row gear-item" data-type="base">
+        <div class="gear-left">
+          <div class="gear-name">外胎補胎片</div>
+          <div class="small">當地補貨</div>
+        </div>
+        <div class="gear-right">
+          <select class="t" aria-label="外胎補胎片 類型">
+            <option value="base" selected>base</option>
+            <option value="worn" >worn</option>
+            <option value="consumable" >consumable</option>
+          </select>
+          <input class="w" inputmode="numeric" placeholder="g" value="" aria-label="外胎補胎片 重量">
+        </div>
+      </div>
+    
+
+      <div class="data-row gear-item" data-type="base">
+        <div class="gear-left">
+          <div class="gear-name">內胎補胎片</div>
+          
+        </div>
+        <div class="gear-right">
+          <select class="t" aria-label="內胎補胎片 類型">
+            <option value="base" selected>base</option>
+            <option value="worn" >worn</option>
+            <option value="consumable" >consumable</option>
+          </select>
+          <input class="w" inputmode="numeric" placeholder="g" value="" aria-label="內胎補胎片 重量">
+        </div>
+      </div>
+    
+
+      <div class="data-row gear-item" data-type="base">
+        <div class="gear-left">
+          <div class="gear-name">塑膠束帶＋PVC膠帶</div>
+          
+        </div>
+        <div class="gear-right">
+          <select class="t" aria-label="塑膠束帶＋PVC膠帶 類型">
+            <option value="base" selected>base</option>
+            <option value="worn" >worn</option>
+            <option value="consumable" >consumable</option>
+          </select>
+          <input class="w" inputmode="numeric" placeholder="g" value="" aria-label="塑膠束帶＋PVC膠帶 重量">
+        </div>
+      </div>
+    
+      </div>
+    </details>
+    
+
+    <details class="gear-section" open>
+      <summary>
+        <span>雨具</span>
+        <span class="num">小計：<strong><span class="cat-sum" data-cat="4">—</span> g</strong></span>
+      </summary>
+      <div class="box gear-cat" data-cat="4">
+        
+      <div class="data-row gear-item" data-type="worn">
+        <div class="gear-left">
+          <div class="gear-name">Decathlon 防水外套 MH500</div>
+
+        </div>
+        <div class="gear-right">
+          <select class="t" aria-label="Decathlon 防水外套 MH500 類型">
+            <option value="base" >base</option>
+            <option value="worn" selected>worn</option>
+            <option value="consumable" >consumable</option>
+          </select>
+          <input class="w" inputmode="numeric" placeholder="g" value="520" aria-label="Decathlon 防水外套 MH500 重量">
+        </div>
+      </div>
+    
+
+      <div class="data-row gear-item" data-type="worn">
+        <div class="gear-left">
+          <div class="gear-name">雨褲</div>
+          
+        </div>
+        <div class="gear-right">
+          <select class="t" aria-label="雨褲 類型">
+            <option value="base" >base</option>
+            <option value="worn" selected>worn</option>
+            <option value="consumable" >consumable</option>
+          </select>
+          <input class="w" inputmode="numeric" placeholder="g" value="" aria-label="雨褲 重量">
+        </div>
+      </div>
+ 
+    
+      </div>
+    </details>
+    
+
+    <details class="gear-section" open>
+      <summary>
+        <span>服裝</span>
+        <span class="num">小計：<strong><span class="cat-sum" data-cat="5">—</span> g</strong></span>
+      </summary>
+      <div class="box gear-cat" data-cat="5">
+        
+      <div class="data-row gear-item" data-type="worn">
+        <div class="gear-left">
+          <div class="gear-name">Decathlon 安全帽</div>
+         
+        </div>
+        <div class="gear-right">
+          <select class="t" aria-label="Decathlon 安全帽 類型">
+            <option value="base" >base</option>
+            <option value="worn" selected>worn</option>
+            <option value="consumable" >consumable</option>
+          </select>
+          <input class="w" inputmode="numeric" placeholder="g" value="470" aria-label="Decathlon 安全帽 重量">
+        </div>
+      </div>
+    
+
+      <div class="data-row gear-item" data-type="worn">
+        <div class="gear-left">
+          <div class="gear-name">Decathlon 頭帶</div>
+          
+        </div>
+        <div class="gear-right">
+          <select class="t" aria-label="Decathlon 頭帶 類型">
+            <option value="base" >base</option>
+            <option value="worn" selected>worn</option>
+            <option value="consumable" >consumable</option>
+          </select>
+          <input class="w" inputmode="numeric" placeholder="g" value="" aria-label="Decathlon 頭帶 重量">
+        </div>
+      </div>
+    
+
+      <div class="data-row gear-item" data-type="worn">
+        <div class="gear-left">
+          <div class="gear-name">太陽眼鏡</div>
+          
+        </div>
+        <div class="gear-right">
+          <select class="t" aria-label="太陽眼鏡 類型">
+            <option value="base" >base</option>
+            <option value="worn" selected>worn</option>
+            <option value="consumable" >consumable</option>
+          </select>
+          <input class="w" inputmode="numeric" placeholder="g" value="" aria-label="太陽眼鏡 重量">
+        </div>
+      </div>
+    
+
+      <div class="data-row gear-item" data-type="worn">
+        <div class="gear-left">
+          <div class="gear-name">Decathlon VAN RYSEL 手套 RCR</div>
+          
+        </div>
+        <div class="gear-right">
+          <select class="t" aria-label="Decathlon VAN RYSEL 手套 RCR 類型">
+            <option value="base" >base</option>
+            <option value="worn" selected>worn</option>
+            <option value="consumable" >consumable</option>
+          </select>
+          <input class="w" inputmode="numeric" placeholder="g" value="50" aria-label="Decathlon VAN RYSEL 手套 RCR 重量">
+        </div>
+      </div>
+    
+
+      <div class="data-row gear-item" data-type="worn">
+        <div class="gear-left">
+          <div class="gear-name">The North Face 遮陽帽</div>
+          
+        </div>
+        <div class="gear-right">
+          <select class="t" aria-label="The North Face 遮陽帽 類型">
+            <option value="base" >base</option>
+            <option value="worn" selected>worn</option>
+            <option value="consumable" >consumable</option>
+          </select>
+          <input class="w" inputmode="numeric" placeholder="g" value="70" aria-label="The North Face 遮陽帽 重量">
+        </div>
+      </div>
+    
+
+      <div class="data-row gear-item" data-type="worn">
+        <div class="gear-left">
+          <div class="gear-name">BUFF COOLNET 頭巾</div>
+          
+        </div>
+        <div class="gear-right">
+          <select class="t" aria-label="BUFF COOLNET 頭巾 類型">
+            <option value="base" >base</option>
+            <option value="worn" selected>worn</option>
+            <option value="consumable" >consumable</option>
+          </select>
+          <input class="w" inputmode="numeric" placeholder="g" value="" aria-label="BUFF COOLNET 頭巾 重量">
+        </div>
+      </div>
+    
+
+      <div class="data-row gear-item" data-type="worn">
+        <div class="gear-left">
+          <div class="gear-name">長袖上衣</div>
+          
+        </div>
+        <div class="gear-right">
+          <select class="t" aria-label="長袖上衣 類型">
+            <option value="base" >base</option>
+            <option value="worn" selected>worn</option>
+            <option value="consumable" >consumable</option>
+          </select>
+          <input class="w" inputmode="numeric" placeholder="g" value="240" aria-label="長袖上衣 重量">
+        </div>
+      </div>
+    
+
+      <div class="data-row gear-item" data-type="worn">
+        <div class="gear-left">
+          <div class="gear-name">短褲</div>
+          
+        </div>
+        <div class="gear-right">
+          <select class="t" aria-label="短褲 類型">
+            <option value="base" >base</option>
+            <option value="worn" selected>worn</option>
+            <option value="consumable" >consumable</option>
+          </select>
+          <input class="w" inputmode="numeric" placeholder="g" value="160" aria-label="短褲 重量">
+        </div>
+      </div>
+    
+
+      <div class="data-row gear-item" data-type="worn">
+        <div class="gear-left">
+          <div class="gear-name">Decathlon 外套 RUN WIND</div>
+         
+        </div>
+        <div class="gear-right">
+          <select class="t" aria-label="Decathlon 外套 RUN WIND 類型">
+            <option value="base" >base</option>
+            <option value="worn" selected>worn</option>
+            <option value="consumable" >consumable</option>
+          </select>
+          <input class="w" inputmode="numeric" placeholder="g" value="182" aria-label="Decathlon 外套 RUN WIND 重量">
+        </div>
+      </div>
+    
+
+      <div class="data-row gear-item" data-type="worn">
+        <div class="gear-left">
+          <div class="gear-name">羊毛衣</div>
+          
+        </div>
+        <div class="gear-right">
+          <select class="t" aria-label="羊毛衣 類型">
+            <option value="base" >base</option>
+            <option value="worn" selected>worn</option>
+            <option value="consumable" >consumable</option>
+          </select>
+          <input class="w" inputmode="numeric" placeholder="g" value="180" aria-label="羊毛衣 重量">
+        </div>
+      </div>
+    
+
+      <div class="data-row gear-item" data-type="worn">
+        <div class="gear-left">
+          <div class="gear-name">Decathlon 長褲</div>
+      
+        </div>
+        <div class="gear-right">
+          <select class="t" aria-label="Decathlon 長褲 類型">
+            <option value="base" >base</option>
+            <option value="worn" selected>worn</option>
+            <option value="consumable" >consumable</option>
+          </select>
+          <input class="w" inputmode="numeric" placeholder="g" value="240" aria-label="Decathlon 長褲 重量">
+        </div>
+      </div>
+    
+
+      <div class="data-row gear-item" data-type="worn">
+        <div class="gear-left">
+          <div class="gear-name">羽絨外套+防潑水袋</div>
+         
+        </div>
+        <div class="gear-right">
+          <select class="t" aria-label="羽絨外套+防潑水袋 類型">
+            <option value="base" >base</option>
+            <option value="worn" selected>worn</option>
+            <option value="consumable" >consumable</option>
+          </select>
+          <input class="w" inputmode="numeric" placeholder="g" value="330" aria-label="羽絨外套+防潑水袋 重量">
+        </div>
+      </div>
+    
+
+      <div class="data-row gear-item" data-type="worn">
+        <div class="gear-left">
+          <div class="gear-name">Columbia 手套</div>
+          <div class="small">2019購入</div>
+        </div>
+        <div class="gear-right">
+          <select class="t" aria-label="Columbia 手套 類型">
+            <option value="base" >base</option>
+            <option value="worn" selected>worn</option>
+            <option value="consumable" >consumable</option>
+          </select>
+          <input class="w" inputmode="numeric" placeholder="g" value="" aria-label="Columbia 手套 重量">
+        </div>
+      </div>
+    
+
+      <div class="data-row gear-item" data-type="worn">
+        <div class="gear-left">
+          <div class="gear-name">SKINS-5 壓縮褲</div>
+          <div class="small">S號</div>
+        </div>
+        <div class="gear-right">
+          <select class="t" aria-label="SKINS-5 壓縮褲 類型">
+            <option value="base" >base</option>
+            <option value="worn" selected>worn</option>
+            <option value="consumable" >consumable</option>
+          </select>
+          <input class="w" inputmode="numeric" placeholder="g" value="" aria-label="SKINS-5 壓縮褲 重量">
+        </div>
+      </div>
+    
+
+      <div class="data-row gear-item" data-type="worn">
+        <div class="gear-left">
+          <div class="gear-name">內衣*2</div>
+          
+        </div>
+        <div class="gear-right">
+          <select class="t" aria-label="內衣*2 類型">
+            <option value="base" >base</option>
+            <option value="worn" selected>worn</option>
+            <option value="consumable" >consumable</option>
+          </select>
+          <input class="w" inputmode="numeric" placeholder="g" value="170" aria-label="內衣*2 重量">
+        </div>
+      </div>
+    
+
+      <div class="data-row gear-item" data-type="worn">
+        <div class="gear-left">
+          <div class="gear-name">內褲*3</div>
+          
+        </div>
+        <div class="gear-right">
+          <select class="t" aria-label="內褲*3 類型">
+            <option value="base" >base</option>
+            <option value="worn" selected>worn</option>
+            <option value="consumable" >consumable</option>
+          </select>
+          <input class="w" inputmode="numeric" placeholder="g" value="70" aria-label="內褲*3 重量">
+        </div>
+      </div>
+    
+      </div>
+    </details>
+    
+
+    <details class="gear-section" open>
+      <summary>
+        <span>鞋襪</span>
+        <span class="num">小計：<strong><span class="cat-sum" data-cat="6">—</span> g</strong></span>
+      </summary>
+      <div class="box gear-cat" data-cat="6">
+        
+      <div class="data-row gear-item" data-type="worn">
+        <div class="gear-left">
+          <div class="gear-name">旅行鞋</div>
+          <div class="small">2169</div>
+        </div>
+        <div class="gear-right">
+          <select class="t" aria-label="旅行鞋 類型">
+            <option value="base" >base</option>
+            <option value="worn" selected>worn</option>
+            <option value="consumable" >consumable</option>
+          </select>
+          <input class="w" inputmode="numeric" placeholder="g" value="758" aria-label="旅行鞋 重量">
+        </div>
+      </div>
+    
+
+      <div class="data-row gear-item" data-type="worn">
+        <div class="gear-left">
+          <div class="gear-name">襪子*3</div>
+          
+        </div>
+        <div class="gear-right">
+          <select class="t" aria-label="襪子*3 類型">
+            <option value="base" >base</option>
+            <option value="worn" selected>worn</option>
+            <option value="consumable" >consumable</option>
+          </select>
+          <input class="w" inputmode="numeric" placeholder="g" value="" aria-label="襪子*3 重量">
+        </div>
+      </div>
+    
+
+      <div class="data-row gear-item" data-type="worn">
+        <div class="gear-left">
+          <div class="gear-name">藍白拖</div>
+          
+        </div>
+        <div class="gear-right">
+          <select class="t" aria-label="藍白拖 類型">
+            <option value="base" >base</option>
+            <option value="worn" selected>worn</option>
+            <option value="consumable" >consumable</option>
+          </select>
+          <input class="w" inputmode="numeric" placeholder="g" value="200" aria-label="藍白拖 重量">
+        </div>
+      </div>
+    
+      </div>
+    </details>
+    
+
+    <details class="gear-section" open>
+      <summary>
+        <span>睡眠</span>
+        <span class="num">小計：<strong><span class="cat-sum" data-cat="7">—</span> g</strong></span>
+      </summary>
+      <div class="box gear-cat" data-cat="7">
+        
+      <div class="data-row gear-item" data-type="base">
+        <div class="gear-left">
+          <div class="gear-name">Decathlon 自立帳 1P MT900</div>
+          <div class="small">二手</div>
+        </div>
+        <div class="gear-right">
+          <select class="t" aria-label="Decathlon 自立帳 1P MT900 類型">
+            <option value="base" selected>base</option>
+            <option value="worn" >worn</option>
+            <option value="consumable" >consumable</option>
+          </select>
+          <input class="w" inputmode="numeric" placeholder="g" value="1290" aria-label="Decathlon 自立帳 1P MT900 重量">
+        </div>
+      </div>
+    
+
+      <div class="data-row gear-item" data-type="base">
+        <div class="gear-left">
+          <div class="gear-name">Rab Ultrasphere 4.5 睡墊</div>
+         
+        </div>
+        <div class="gear-right">
+          <select class="t" aria-label="Rab Ultrasphere 4.5 睡墊 類型">
+            <option value="base" selected>base</option>
+            <option value="worn" >worn</option>
+            <option value="consumable" >consumable</option>
+          </select>
+          <input class="w" inputmode="numeric" placeholder="g" value="490" aria-label="Rab Ultrasphere 4.5 睡墊 重量">
+        </div>
+      </div>
+    
+
+      <div class="data-row gear-item" data-type="base">
+        <div class="gear-left">
+          <div class="gear-name">露宿袋</div>
+          <div class="small"></div>
+        </div>
+        <div class="gear-right">
+          <select class="t" aria-label="露宿袋 類型">
+            <option value="base" selected>base</option>
+            <option value="worn" >worn</option>
+            <option value="consumable" >consumable</option>
+          </select>
+          <input class="w" inputmode="numeric" placeholder="g" value="" aria-label="露宿袋 重量">
+        </div>
+      </div>
+    
+
+      <div class="data-row gear-item" data-type="base">
+        <div class="gear-left">
+          <div class="gear-name">BlackICE G700</div>
+          <div class="small">二手</div>
+        </div>
+        <div class="gear-right">
+          <select class="t" aria-label="BlackICE G700 類型">
+            <option value="base" selected>base</option>
+            <option value="worn" >worn</option>
+            <option value="consumable" >consumable</option>
+          </select>
+          <input class="w" inputmode="numeric" placeholder="g" value="1040" aria-label="BlackICE G700 重量">
+        </div>
+      </div>
+    
+
+      <div class="data-row gear-item" data-type="base">
+        <div class="gear-left">
+          <div class="gear-name">Decathlon 纖維毛巾</div>
+        
+        </div>
+        <div class="gear-right">
+          <select class="t" aria-label="Decathlon 纖維毛巾 類型">
+            <option value="base" selected>base</option>
+            <option value="worn" >worn</option>
+            <option value="consumable" >consumable</option>
+          </select>
+          <input class="w" inputmode="numeric" placeholder="g" value="100" aria-label="Decathlon 纖維毛巾 重量">
+        </div>
+      </div>
+    
+
+      <div class="data-row gear-item" data-type="worn">
+        <div class="gear-left">
+          <div class="gear-name">Decathlon 刷毛帽</div>
+          <div class="small">2016旅行夥伴</div>
+        </div>
+        <div class="gear-right">
+          <select class="t" aria-label="Decathlon 刷毛帽 類型">
+            <option value="base" >base</option>
+            <option value="worn" selected>worn</option>
+            <option value="consumable" >consumable</option>
+          </select>
+          <input class="w" inputmode="numeric" placeholder="g" value="?" aria-label="Decathlon 刷毛帽 重量">
+        </div>
+      </div>
+    
+
+      <div class="data-row gear-item" data-type="worn">
+        <div class="gear-left">
+          <div class="gear-name">高領毛衣</div>
+          
+        </div>
+        <div class="gear-right">
+          <select class="t" aria-label="高領毛衣 類型">
+            <option value="base" >base</option>
+            <option value="worn" selected>worn</option>
+            <option value="consumable" >consumable</option>
+          </select>
+          <input class="w" inputmode="numeric" placeholder="g" value="300" aria-label="高領毛衣 重量">
+        </div>
+      </div>
+    
+      </div>
+    </details>
+    
+
+    <details class="gear-section" open>
+      <summary>
+        <span>飲水</span>
+        <span class="num">小計：<strong><span class="cat-sum" data-cat="8">—</span> g</strong></span>
+      </summary>
+      <div class="box gear-cat" data-cat="8">
+        
+      <div class="data-row gear-item" data-type="base">
+        <div class="gear-left">
+          <div class="gear-name">Swell保溫壺500ml</div>
+          <div class="small">直徑7×高26.5cm 瓶口內徑3.2cm、底徑7cm</div>
+        </div>
+        <div class="gear-right">
+          <select class="t" aria-label="Swell保溫壺500ml 類型">
+            <option value="base" selected>base</option>
+            <option value="worn" >worn</option>
+            <option value="consumable" >consumable</option>
+          </select>
+          <input class="w" inputmode="numeric" placeholder="g" value="340" aria-label="Swell保溫壺500ml 重量">
+        </div>
+      </div>
+    
+
+      <div class="data-row gear-item" data-type="base">
+        <div class="gear-left">
+          <div class="gear-name">Decathlon 1L水壺</div>
+          
+        </div>
+        <div class="gear-right">
+          <select class="t" aria-label="Decathlon 1L水壺 類型">
+            <option value="base" selected>base</option>
+            <option value="worn" >worn</option>
+            <option value="consumable" >consumable</option>
+          </select>
+          <input class="w" inputmode="numeric" placeholder="g" value="210" aria-label="Decathlon 1L水壺 重量">
+        </div>
+      </div>
+
+
+      <div class="data-row gear-item" data-type="base">
+        <div class="gear-left">
+          <div class="gear-name">山小孩 運動水瓶 1L</div>
+          <div class="small">兩個（＋運動瓶蓋）</div>
+        </div>
+        <div class="gear-right">
+          <select class="t" aria-label="山小孩 運動水瓶 1L 類型">
+            <option value="base" selected>base</option>
+            <option value="worn" >worn</option>
+            <option value="consumable" >consumable</option>
+          </select>
+          <input class="w" inputmode="numeric" placeholder="g" value="97" aria-label="山小孩 運動水瓶 1L 重量">
+        </div>
+      </div>
+    
+
+      <div class="data-row gear-item" data-type="base">
+        <div class="gear-left">
+          <div class="gear-name">Sea To Summit 4L水袋</div>
+          
+        </div>
+        <div class="gear-right">
+          <select class="t" aria-label="Sea To Summit 4L水袋 類型">
+            <option value="base" selected>base</option>
+            <option value="worn" >worn</option>
+            <option value="consumable" >consumable</option>
+          </select>
+          <input class="w" inputmode="numeric" placeholder="g" value="126" aria-label="Sea To Summit 4L水袋 重量">
+        </div>
+      </div>
+    
+      </div>
+    </details>
+    
+
+    <details class="gear-section" open>
+      <summary>
+        <span>炊具</span>
+        <span class="num">小計：<strong><span class="cat-sum" data-cat="9">—</span> g</strong></span>
+      </summary>
+      <div class="box gear-cat" data-cat="9">
+        
+      <div class="data-row gear-item" data-type="base">
+        <div class="gear-left">
+          <div class="gear-name">登山爐</div>
+          <div class="small">2016旅行夥伴</div>
+        </div>
+        <div class="gear-right">
+          <select class="t" aria-label="登山爐 類型">
+            <option value="base" selected>base</option>
+            <option value="worn" >worn</option>
+            <option value="consumable" >consumable</option>
+          </select>
+          <input class="w" inputmode="numeric" placeholder="g" value="240" aria-label="登山爐 重量">
+        </div>
+      </div>
+    
+
+      <div class="data-row gear-item" data-type="base">
+        <div class="gear-left">
+          <div class="gear-name">1人鍋具</div>
+          <div class="small">二手</div>
+        </div>
+        <div class="gear-right">
+          <select class="t" aria-label="1人鍋具 類型">
+            <option value="base" selected>base</option>
+            <option value="worn" >worn</option>
+            <option value="consumable" >consumable</option>
+          </select>
+          <input class="w" inputmode="numeric" placeholder="g" value="430" aria-label="1人鍋具 重量">
+        </div>
+      </div>
+    
+
+      <div class="data-row gear-item" data-type="base">
+        <div class="gear-left">
+          <div class="gear-name">筷子</div>
+          
+        </div>
+        <div class="gear-right">
+          <select class="t" aria-label="筷子 類型">
+            <div class="small">2018旅行夥伴</div>
+            <option value="base" selected>base</option>
+            <option value="worn" >worn</option>
+            <option value="consumable" >consumable</option>
+          </select>
+          <input class="w" inputmode="numeric" placeholder="g" value="?" aria-label="筷子 重量">
+        </div>
+      </div>
+    
+
+      <div class="data-row gear-item" data-type="consumable">
+        <div class="gear-left">
+          <div class="gear-name">瓦斯罐</div>
+          <div class="small">當地購買</div>
+        </div>
+        <div class="gear-right">
+          <select class="t" aria-label="瓦斯罐 類型">
+            <option value="base" >base</option>
+            <option value="worn" >worn</option>
+            <option value="consumable" selected>consumable</option>
+          </select>
+          <input class="w" inputmode="numeric" placeholder="g" value="390" aria-label="瓦斯罐 重量">
+        </div>
+      </div>
+    
+
+      <div class="data-row gear-item" data-type="base">
+        <div class="gear-left">
+          <div class="gear-name">打火機</div>
+          
+        </div>
+        <div class="gear-right">
+          <select class="t" aria-label="打火機 類型">
+            <option value="base" selected>base</option>
+            <option value="worn" >worn</option>
+            <option value="consumable" >consumable</option>
+          </select>
+          <input class="w" inputmode="numeric" placeholder="g" value="20" aria-label="打火機 重量">
+        </div>
+      </div>
+    
+
+      <div class="data-row gear-item" data-type="base">
+        <div class="gear-left">
+          <div class="gear-name">小刀</div>
+          <div class="small">或剪刀</div>
+        </div>
+        <div class="gear-right">
+          <select class="t" aria-label="小刀 類型">
+            <option value="base" selected>base</option>
+            <option value="worn" >worn</option>
+            <option value="consumable" >consumable</option>
+          </select>
+          <input class="w" inputmode="numeric" placeholder="g" value="135" aria-label="小刀 重量">
+        </div>
+      </div>
+    
+      </div>
+    </details>
+    
+
+    <details class="gear-section" open>
+      <summary>
+        <span>排泄</span>
+        <span class="num">小計：<strong><span class="cat-sum" data-cat="10">—</span> g</strong></span>
+      </summary>
+      <div class="box gear-cat" data-cat="10">
+        
+      <div class="data-row gear-item" data-type="base">
+        <div class="gear-left">
+          <div class="gear-name">小便器</div>
+          
+        </div>
+        <div class="gear-right">
+          <select class="t" aria-label="小便器 類型">
+            <option value="base" selected>base</option>
+            <option value="worn" >worn</option>
+            <option value="consumable" >consumable</option>
+          </select>
+          <input class="w" inputmode="numeric" placeholder="g" value="" aria-label="小便器 重量">
+        </div>
+      </div>
+    
+
+      <div class="data-row gear-item" data-type="base">
+        <div class="gear-left">
+          <div class="gear-name">貓鏟</div>
+          
+        </div>
+        <div class="gear-right">
+          <select class="t" aria-label="貓鏟 類型">
+            <option value="base" selected>base</option>
+            <option value="worn" >worn</option>
+            <option value="consumable" >consumable</option>
+          </select>
+          <input class="w" inputmode="numeric" placeholder="g" value="29" aria-label="貓鏟 重量">
+        </div>
+      </div>
+    
+
+      <div class="data-row gear-item" data-type="consumable">
+        <div class="gear-left">
+          <div class="gear-name">濕紙巾</div>
+          
+        </div>
+        <div class="gear-right">
+          <select class="t" aria-label="濕紙巾 類型">
+            <option value="base" >base</option>
+            <option value="worn" >worn</option>
+            <option value="consumable" selected>consumable</option>
+          </select>
+          <input class="w" inputmode="numeric" placeholder="g" value="85" aria-label="濕紙巾 重量">
+        </div>
+      </div>
+    
+
+      <div class="data-row gear-item" data-type="consumable">
+        <div class="gear-left">
+          <div class="gear-name">捲筒衛生紙</div>
+          <div class="small">把紙筒拿掉</div>
+        </div>
+        <div class="gear-right">
+          <select class="t" aria-label="捲筒衛生紙 類型">
+            <option value="base" >base</option>
+            <option value="worn" >worn</option>
+            <option value="consumable" selected>consumable</option>
+          </select>
+          <input class="w" inputmode="numeric" placeholder="g" value="150" aria-label="捲筒衛生紙 重量">
+        </div>
+      </div>
+    
+      </div>
+    </details>
+    
+
+    <details class="gear-section" open>
+      <summary>
+        <span>照明</span>
+        <span class="num">小計：<strong><span class="cat-sum" data-cat="11">—</span> g</strong></span>
+      </summary>
+      <div class="box gear-cat" data-cat="11">
+        
+      <div class="data-row gear-item" data-type="base">
+        <div class="gear-left">
+          <div class="gear-name">Decathlon 900流明越野跑頭燈 Ontrail</div>
+          <div class="small">二次良品</div>
+        </div>
+        <div class="gear-right">
+          <select class="t" aria-label="Decathlon 900流明越野跑頭燈 Ontrail 類型">
+            <option value="base" selected>base</option>
+            <option value="worn" >worn</option>
+            <option value="consumable" >consumable</option>
+          </select>
+          <input class="w" inputmode="numeric" placeholder="g" value="150" aria-label="Decathlon 900流明越野跑頭燈 Ontrail 重量">
+        </div>
+      </div>
+    
+      </div>
+    </details>
+    
+
+    <details class="gear-section" open>
+      <summary>
+        <span>電子</span>
+        <span class="num">小計：<strong><span class="cat-sum" data-cat="12">—</span> g</strong></span>
+      </summary>
+      <div class="box gear-cat" data-cat="12">
+        
+      <div class="data-row gear-item" data-type="base">
+        <div class="gear-left">
+          <div class="gear-name">iPhone Xs Max</div>
+          
+        </div>
+        <div class="gear-right">
+          <select class="t" aria-label="iPhone Xs Max 類型">
+            <option value="base" selected>base</option>
+            <option value="worn" >worn</option>
+            <option value="consumable" >consumable</option>
+          </select>
+          <input class="w" inputmode="numeric" placeholder="g" value="160" aria-label="iPhone Xs Max 重量">
+        </div>
+      </div>
+    
+
+      <div class="data-row gear-item" data-type="base">
+        <div class="gear-left">
+          <div class="gear-name">Honor V2 +手機套</div>
+          
+        </div>
+        <div class="gear-right">
+          <select class="t" aria-label="Honor V2 +手機套 類型">
+            <option value="base" selected>base</option>
+            <option value="worn" >worn</option>
+            <option value="consumable" >consumable</option>
+          </select>
+          <input class="w" inputmode="numeric" placeholder="g" value="300" aria-label="Honor V2 +手機套 重量">
+        </div>
+      </div>
+    
+    
+
+      <div class="data-row gear-item" data-type="base">
+        <div class="gear-left">
+          <div class="gear-name">Macbook Air 13</div>
+          
+        </div>
+        <div class="gear-right">
+          <select class="t" aria-label="Macbook Air 13 類型">
+            <option value="base" selected>base</option>
+            <option value="worn" >worn</option>
+            <option value="consumable" >consumable</option>
+          </select>
+          <input class="w" inputmode="numeric" placeholder="g" value="1220" aria-label="Macbook Air 13 重量">
+        </div>
+      </div>
+    
+
+      <div class="data-row gear-item" data-type="base">
+        <div class="gear-left">
+          <div class="gear-name">筆電包</div>
+          
+        </div>
+        <div class="gear-right">
+          <select class="t" aria-label="筆電包 類型">
+            <option value="base" selected>base</option>
+            <option value="worn" >worn</option>
+            <option value="consumable" >consumable</option>
+          </select>
+          <input class="w" inputmode="numeric" placeholder="g" value="170" aria-label="筆電包 重量">
+        </div>
+      </div>
+    
+
+      <div class="data-row gear-item" data-type="base">
+        <div class="gear-left">
+          <div class="gear-name">耳機</div>
+          
+        </div>
+        <div class="gear-right">
+          <select class="t" aria-label="耳機 類型">
+            <option value="base" selected>base</option>
+            <option value="worn" >worn</option>
+            <option value="consumable" >consumable</option>
+          </select>
+          <input class="w" inputmode="numeric" placeholder="g" value="13" aria-label="耳機 重量">
+        </div>
+      </div>
+    
+
+      <div class="data-row gear-item" data-type="base">
+        <div class="gear-left">
+          <div class="gear-name">GIGASTONE的HUB-P7</div>
+          
+        </div>
+        <div class="gear-right">
+          <select class="t" aria-label="GIGASTONE的HUB-P7 類型">
+            <option value="base" selected>base</option>
+            <option value="worn" >worn</option>
+            <option value="consumable" >consumable</option>
+          </select>
+          <input class="w" inputmode="numeric" placeholder="g" value="100" aria-label="GIGASTONE的HUB-P7 重量">
+        </div>
+      </div>
+    
+
+      <div class="data-row gear-item" data-type="base">
+        <div class="gear-left">
+          <div class="gear-name">各式充電線</div>
+          
+        </div>
+        <div class="gear-right">
+          <select class="t" aria-label="各式充電線 類型">
+            <option value="base" selected>base</option>
+            <option value="worn" >worn</option>
+            <option value="consumable" >consumable</option>
+          </select>
+          <input class="w" inputmode="numeric" placeholder="g" value="270" aria-label="各式充電線 重量">
+        </div>
+      </div>
+    
+
+      <div class="data-row gear-item" data-type="base">
+        <div class="gear-left">
+          <div class="gear-name">充電頭</div>
+          
+        </div>
+        <div class="gear-right">
+          <select class="t" aria-label="充電頭 類型">
+            <option value="base" selected>base</option>
+            <option value="worn" >worn</option>
+            <option value="consumable" >consumable</option>
+          </select>
+          <input class="w" inputmode="numeric" placeholder="g" value="?" aria-label="充電頭 重量">
+        </div>
+      </div>
+    
+
+      <div class="data-row gear-item" data-type="base">
+        <div class="gear-left">
+          <div class="gear-name">隨身硬碟 2T</div>
+          
+        </div>
+        <div class="gear-right">
+          <select class="t" aria-label="隨身硬碟 2T 類型">
+            <option value="base" selected>base</option>
+            <option value="worn" >worn</option>
+            <option value="consumable" >consumable</option>
+          </select>
+          <input class="w" inputmode="numeric" placeholder="g" value="185" aria-label="隨身硬碟 2T 重量">
+        </div>
+      </div>
+    
+
+      <div class="data-row gear-item" data-type="base">
+        <div class="gear-left">
+          <div class="gear-name">行動電源1號 10000mh</div>
+          
+        </div>
+        <div class="gear-right">
+          <select class="t" aria-label="行動電源1號 10000mh 類型">
+            <option value="base" selected>base</option>
+            <option value="worn" >worn</option>
+            <option value="consumable" >consumable</option>
+          </select>
+          <input class="w" inputmode="numeric" placeholder="g" value="600" aria-label="行動電源1號 10000mh 重量">
+        </div>
+      </div>
+    
+
+      <div class="data-row gear-item" data-type="base">
+        <div class="gear-left">
+          <div class="gear-name">行動電源2號 10000mh</div>
+          
+        </div>
+        <div class="gear-right">
+          <select class="t" aria-label="行動電源2號 10000mh 類型">
+            <option value="base" selected>base</option>
+            <option value="worn" >worn</option>
+            <option value="consumable" >consumable</option>
+          </select>
+          <input class="w" inputmode="numeric" placeholder="g" value="220" aria-label="行動電源2號 10000mh 重量">
+        </div>
+      </div>
+    
+
+      <div class="data-row gear-item" data-type="base">
+        <div class="gear-left">
+          <div class="gear-name">黑叶太阳能充电板 23W</div>
+          
+        </div>
+        <div class="gear-right">
+          <select class="t" aria-label="黑叶太阳能充电板 23W 類型">
+            <option value="base" selected>base</option>
+            <option value="worn" >worn</option>
+            <option value="consumable" >consumable</option>
+          </select>
+          <input class="w" inputmode="numeric" placeholder="g" value="370" aria-label="黑叶太阳能充电板 23W 重量">
+        </div>
+      </div>
+    
+      </div>
+    </details>
+    
+
+    <details class="gear-section" open>
+      <summary>
+        <span>急救</span>
+        <span class="num">小計：<strong><span class="cat-sum" data-cat="13">—</span> g</strong></span>
+      </summary>
+      <div class="box gear-cat" data-cat="13">
+        
+      <div class="data-row gear-item" data-type="base">
+        <div class="gear-left">
+          <div class="gear-name">SABRE 2合1高分貝警報</div>
+          
+        </div>
+        <div class="gear-right">
+          <select class="t" aria-label="SABRE 2合1高分貝警報 類型">
+            <option value="base" selected>base</option>
+            <option value="worn" >worn</option>
+            <option value="consumable" >consumable</option>
+          </select>
+          <input class="w" inputmode="numeric" placeholder="g" value="" aria-label="SABRE 2合1高分貝警報 重量">
+        </div>
+      </div>
+    
+    
+
+      <div class="data-row gear-item" data-type="base">
+        <div class="gear-left">
+          <div class="gear-name">求生毯</div>
+          
+        </div>
+        <div class="gear-right">
+          <select class="t" aria-label="求生毯 類型">
+            <option value="base" selected>base</option>
+            <option value="worn" >worn</option>
+            <option value="consumable" >consumable</option>
+          </select>
+          <input class="w" inputmode="numeric" placeholder="g" value="64" aria-label="求生毯 重量">
+        </div>
+      </div>
+
+
+      <div class="data-row gear-item" data-type="base">
+        <div class="gear-left">
+          <div class="gear-name">救生哨</div>
+          
+        </div>
+        <div class="gear-right">
+          <select class="t" aria-label="救生哨 類型">
+            <option value="base" selected>base</option>
+            <option value="worn" >worn</option>
+            <option value="consumable" >consumable</option>
+          </select>
+          <input class="w" inputmode="numeric" placeholder="g" value="10" aria-label="救生哨 重量">
+        </div>
+      </div>
+    
+
+      <div class="data-row gear-item" data-type="base">
+        <div class="gear-left">
+          <div class="gear-name">急救包</div>
+          <div class="small">外傷急救包： OK繃、透氣膠帶、生理食鹽水（小管裝）、優碘棉片、醫療手套*2</div>
+        </div>
+        <div class="gear-right">
+          <select class="t" aria-label="急救包 類型">
+            <option value="base" selected>base</option>
+            <option value="worn" >worn</option>
+            <option value="consumable" >consumable</option>
+          </select>
+          <input class="w" inputmode="numeric" placeholder="g" value="100" aria-label="急救包 重量">
+        </div>
+      </div>
+    
+      </div>
+    </details>
+    
+
+    <details class="gear-section" open>
+      <summary>
+        <span>衛生</span>
+        <span class="num">小計：<strong><span class="cat-sum" data-cat="14">—</span> g</strong></span>
+      </summary>
+      <div class="box gear-cat" data-cat="14">
+        
+      <div class="data-row gear-item" data-type="base">
+        <div class="gear-left">
+          <div class="gear-name">盥洗包</div>
+          <div class="small">牙刷、牙膏、洗面乳、肥皂、指甲刀</div>
+        </div>
+        <div class="gear-right">
+          <select class="t" aria-label="盥洗包 類型">
+            <option value="base" selected>base</option>
+            <option value="worn" >worn</option>
+            <option value="consumable" >consumable</option>
+          </select>
+          <input class="w" inputmode="numeric" placeholder="g" value="300" aria-label="盥洗包 重量">
+        </div>
+      </div>
+    
+    
+      <div class="data-row gear-item" data-type="base">
+        <div class="gear-left">
+          <div class="gear-name">隨身維護包</div>
+          <div class="small">眼藥水、耳塞、防曬乳、乳液、痠痛軟膏</div>
+        </div>
+        <div class="gear-right">
+          <select class="t" aria-label="隨身維護包 類型">
+            <option value="base" selected>base</option>
+            <option value="worn" >worn</option>
+            <option value="consumable" >consumable</option>
+          </select>
+          <input class="w" inputmode="numeric" placeholder="g" value="300" aria-label="隨身維護包 重量">
+        </div>
+      </div>
+    
+
+    <details class="gear-section" open>
+      <summary>
+        <span>健康</span>
+        <span class="num">小計：<strong><span class="cat-sum" data-cat="15">—</span> g</strong></span>
+      </summary>
+      <div class="box gear-cat" data-cat="15">
+        
+      <div class="data-row gear-item" data-type="base">
+        <div class="gear-left">
+          <div class="gear-name">綜合維他命</div>
+          <div class="small">電解質粉之類</div>
+        </div>
+        <div class="gear-right">
+          <select class="t" aria-label="綜合維他命 類型">
+            <option value="base" selected>base</option>
+            <option value="worn" >worn</option>
+            <option value="consumable" >consumable</option>
+          </select>
+          <input class="w" inputmode="numeric" placeholder="g" value="" aria-label="綜合維他命 重量">
+        </div>
+      </div>
+    
+
+      <div class="data-row gear-item" data-type="base">
+        <div class="gear-left">
+          <div class="gear-name">筋膜球</div>
+          
+        </div>
+        <div class="gear-right">
+          <select class="t" aria-label="筋膜球 類型">
+            <option value="base" selected>base</option>
+            <option value="worn" >worn</option>
+            <option value="consumable" >consumable</option>
+          </select>
+          <input class="w" inputmode="numeric" placeholder="g" value="70" aria-label="筋膜球 重量">
+        </div>
+      </div>
+    
+      </div>
+    </details>
+    
+
+
+      <details class="gear-section" open>
+      <summary>
+        <span>導航</span>
+        <span class="num">小計：<strong><span class="cat-sum" data-cat="15">—</span> g</strong></span>
+      </summary>
+      <div class="box gear-cat" data-cat="15">
+        
+      <div class="data-row gear-item" data-type="base">
+        <div class="gear-left">
+          <div class="gear-name">Suunto Vertical 2</div>
+          <div class="small"></div>
+        </div>
+        <div class="gear-right">
+          <select class="t" aria-label="Suunto Vertical 2 類型">
+            <option value="base" selected>base</option>
+            <option value="worn" >worn</option>
+            <option value="consumable" >consumable</option>
+          </select>
+          <input class="w" inputmode="numeric" placeholder="g" value="87" aria-label="Suunto Vertical 2 重量">
+        </div>
+      </div>
+      
+      </div>
+    </details>
+          
+
+      <details class="gear-section" open>
+      <summary>
+        <span>紀錄</span>
+        <span class="num">小計：<strong><span class="cat-sum" data-cat="15">—</span> g</strong></span>
+      </summary>
+      <div class="box gear-cat" data-cat="15">
+        
+      <div class="data-row gear-item" data-type="base">
+        <div class="gear-left">
+          <div class="gear-name">運動相機</div>
+          
+        </div>
+        <div class="gear-right">
+          <select class="t" aria-label="運動相機 類型">
+            <option value="base" selected>base</option>
+            <option value="worn" >worn</option>
+            <option value="consumable" >consumable</option>
+          </select>
+          <input class="w" inputmode="numeric" placeholder="g" value="" aria-label="運動相機 重量">
+        </div>
+      </div>
+      
+      </div>
+    </details>
+
+
+    <details class="gear-section" open>
+      <summary>
+        <span>醫藥</span>
+        <span class="num">小計：<strong><span class="cat-sum" data-cat="16">—</span> g</strong></span>
+      </summary>
+      <div class="box gear-cat" data-cat="16">
+        
+      <div class="data-row gear-item" data-type="base">
+        <div class="gear-left">
+          <div class="gear-name">醫藥包</div>
+          <div class="small">詳細清單見醫療分頁</div>
+        </div>
+        <div class="gear-right">
+          <select class="t" aria-label="醫藥包 類型">
+            <option value="base" selected>base</option>
+            <option value="worn" >worn</option>
+            <option value="consumable" >consumable</option>
+          </select>
+          <input class="w" inputmode="numeric" placeholder="g" value="300" aria-label="醫藥包 重量">
+        </div>
+      </div>
+    
+      </div>
+    </details>
+    
+
+    <details class="gear-section is-hidden">
+      <summary>
+        <span>美洲擴充 (Houston/LA/NY)</span>
+        <span class="num">小計：<strong><span class="cat-sum" data-cat="america">—</span> g</strong></span>
+      </summary>
+      <div class="box gear-cat" data-cat="america">
+        <div class="data-row gear-item" data-type="base">
+          <div class="gear-left">
+            <div class="gear-name">美規轉接插頭</div>
+          </div>
+          <div class="gear-right">
+            <select class="t"><option value="base">base</option></select>
+            <input class="w" value="50">
+          </div>
+        </div>
+        </div>
+    </details>
+    
 
     <p class="more"><a href="#top">↑ 回到頂部</a></p>
   </main>
 
-  <!-- ✅ nav 注入：放在 body 最後，且等 DOM 有 #nav-placeholder 再塞 -->
-<script>
-document.addEventListener('DOMContentLoaded', () => {
-
-  // 1) 載入 nav（失敗就安靜略過）
-  fetch('./nav.html', { cache: 'no-store' })
-    .then(res => {
-      if(!res.ok) throw new Error('nav.html not found');
-      return res.text();
-    })
-    .then(html => {
-      const holder = document.getElementById('nav-placeholder');
-      if (holder) holder.innerHTML = html;
-    })
-    .catch(() => { /* ignore */ });
-
-  // 2) Gear functions
+  <script>
   function toNum(v){
     const n = Number(String(v ?? "").replace(/[^0-9.]/g, ""));
     return Number.isFinite(n) ? n : 0;
@@ -203,8 +1898,10 @@ document.addEventListener('DOMContentLoaded', () => {
       const raw = String(wEl.value ?? '').trim();
       const isEmpty = raw === '';
 
+      // 切換淡灰標記
       row.classList.toggle('is-empty', isEmpty);
 
+      // ⚠︎ 標記（只新增一次）
       const nameEl = row.querySelector('.gear-name');
       if(!nameEl) return;
 
@@ -226,6 +1923,7 @@ document.addEventListener('DOMContentLoaded', () => {
   function render(){
     let base=0, worn=0, cons=0, total=0;
 
+    // 分類小計
     document.querySelectorAll('.gear-cat').forEach(catEl => {
       let catSum = 0;
       catEl.querySelectorAll('.gear-item').forEach(row => {
@@ -237,6 +1935,7 @@ document.addEventListener('DOMContentLoaded', () => {
       if(out) out.textContent = Math.round(catSum);
     });
 
+    // 全局小計（依 type）
     document.querySelectorAll('.gear-item').forEach(row => {
       const w = toNum(row.querySelector('.w')?.value);
       const t = row.querySelector('.t')?.value || row.getAttribute('data-type') || 'base';
@@ -247,33 +1946,30 @@ document.addEventListener('DOMContentLoaded', () => {
       else base += w;
     });
 
-    const baseEl = document.getElementById('baseW');
-    const wornEl = document.getElementById('wornW');
-    const consEl = document.getElementById('consW');
-    const totalEl = document.getElementById('totalW');
+    document.getElementById('baseW').textContent = Math.round(base);
+    document.getElementById('wornW').textContent = Math.round(worn);
+    document.getElementById('consW').textContent = Math.round(cons);
+    document.getElementById('totalW').textContent = Math.round(total);
 
-    if(baseEl) baseEl.textContent = Math.round(base);
-    if(wornEl) wornEl.textContent = Math.round(worn);
-    if(consEl) consEl.textContent = Math.round(cons);
-    if(totalEl) totalEl.textContent = Math.round(total);
-
+    // ⚠︎ 空白重量標記
     markEmptyWeights();
   }
 
-  // 3) 事件綁定（這裡一定在 DOM 出現後才會跑）
+  // 監聽：重量輸入與類型切換
   document.addEventListener('input', (e) => {
-    if(e.target && (e.target.matches('.w') || e.target.matches('.t'))) render();
+    if(e.target.matches('.w') || e.target.matches('.t')) render();
   });
 
-  document.getElementById('expandAll')?.addEventListener('click', () => {
+  // 展開/收合
+  document.getElementById('expandAll').addEventListener('click', () => {
     document.querySelectorAll('details.gear-section').forEach(d => d.open = true);
   });
-
-  document.getElementById('collapseAll')?.addEventListener('click', () => {
+  document.getElementById('collapseAll').addEventListener('click', () => {
     document.querySelectorAll('details.gear-section').forEach(d => d.open = false);
   });
 
-  document.getElementById('exportCSV')?.addEventListener('click', () => {
+  // CSV 匯出
+  document.getElementById('exportCSV').addEventListener('click', () => {
     const rows = [];
     rows.push(['category','item','type','weight_g','note'].join(','));
 
@@ -301,9 +1997,8 @@ document.addEventListener('DOMContentLoaded', () => {
     URL.revokeObjectURL(url);
   });
 
-  // 4) 初次計算
+  // 初次計算
   render();
-});
 </script>
 </body>
 </html>
