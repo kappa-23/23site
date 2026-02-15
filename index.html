@@ -183,7 +183,7 @@
     setInterval(render, 250); // 想省資源可改 1000
   </script>
   <script>
-  fetch('/nav.html')
+  fetch('./nav.html')
     .then(res => res.text())
     .then(html => {
       document.getElementById('nav-placeholder').innerHTML = html;
