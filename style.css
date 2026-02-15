@@ -525,3 +525,38 @@ figure.photo {
   text-transform: uppercase;
   letter-spacing: 0.04em;
 }
+
+/* ===== Fix: top nav first character clipped on some phones ===== */
+
+/* 1) 確保整頁不會因為某個元素而橫向溢出（只防爆，不影響 nav 橫滑） */
+html, body { max-width: 100%; overflow-x: hidden; }
+
+/* 2) 導覽列本體：允許橫滑 + 留出安全區內距 */
+.topnav{
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none; /* Firefox: 隱藏捲軸 */
+  padding-left: max(12px, env(safe-area-inset-left));
+  padding-right: max(12px, env(safe-area-inset-right));
+}
+.topnav::-webkit-scrollbar{ display: none; } /* Chrome/Safari: 隱藏捲軸 */
+
+/* 3) 內層容器：不要被 wrap 限制，維持一排，並給第一個字呼吸空間 */
+.topnav .nav-inner{
+  display: inline-flex;
+  flex-wrap: nowrap;
+  gap: 12px;
+  min-width: max-content;
+
+  /* 關鍵：左側再補一點點，避免第一個字「貼邊被裁」 */
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+/* 4) 連結本身：避免字被切掉（某些字體/縮放會發生） */
+.topnav a{
+  display: inline-block;
+  white-space: nowrap;
+  padding: 10px 2px;  /* 上下留白，避免字的上緣/下緣被裁 */
+  line-height: 1.2;
+}
