@@ -533,3 +533,55 @@ figure.photo {
   text-transform: uppercase;
   letter-spacing: 0.04em;
 }
+
+/* =========================
+   NAV: Mobile clipping fix
+   修：第一個字被切掉 / 不能滑到最左 / iOS safe-area / 100vw 偏移
+   ========================= */
+
+/* 全站避免奇怪水平爆版（不影響 nav 自己的可滑動） */
+html, body{
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
+/* 導覽列本體：不要被裁切 */
+.topnav{
+  position: sticky; /* 如果你不想黏住可改回 static */
+  top: 0;
+  z-index: 1000;
+  background: var(--bg, #fff);
+}
+
+/* 關鍵：讓 nav 內容可以水平滑動 + 不裁切字 */
+.topnav .nav-inner{
+  display: flex;
+  gap: 14px;
+
+  /* iPhone 安全區：避免左側第一個字被切掉 */
+  padding-left: max(14px, env(safe-area-inset-left));
+  padding-right: max(14px, env(safe-area-inset-right));
+
+  /* 允許橫向滑動（超出時可滑） */
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+
+  /* 不換行，避免被壓縮切字 */
+  white-space: nowrap;
+
+  /* 讓滑到最左時也保留內距，不會「卡住半個字」 */
+  scroll-padding-left: max(14px, env(safe-area-inset-left));
+  scroll-padding-right: max(14px, env(safe-area-inset-right));
+}
+
+/* 隱藏橫向卷軸但保留可滑動 */
+.topnav .nav-inner::-webkit-scrollbar{
+  display: none;
+}
+
+/* 連結本身：確保不會被 line-height/盒模型吃掉 */
+.topnav a{
+  display: inline-block;
+  padding: 12px 2px;
+  line-height: 1.1;
+}
