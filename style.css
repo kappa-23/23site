@@ -1,0 +1,527 @@
+@charset "UTF-8";
+
+/* =========================
+   0) 全站變數
+   ========================= */
+:root{
+  --wrap: 1020px;     /* 首頁預設寬度 */
+  --pad: 16px;
+  --text: #111;
+  --muted: #555;
+  --bg: #fff;
+}
+
+/* 讓閱讀頁更窄：在 <body class="narrow"> 時生效 */
+body.narrow{
+  --wrap: 800px;
+  --pad: 20px;
+  --text: #222;       /* 稍微淡一點的黑 */
+}
+
+/* =========================
+   1) 基礎設定
+   ========================= */
+html{
+  -webkit-text-size-adjust:100%;
+  -webkit-font-smoothing: antialiased;
+}
+
+body{
+  margin:0;
+  color: var(--text);
+  font-family:"Songti TC","Noto Serif TC",serif;
+  line-height:1.8;
+  font-size:16px;
+  background: var(--bg);
+}
+
+main{
+  max-width: var(--wrap);
+  margin: 48px auto;
+  padding: 0 var(--pad);
+}
+
+img{ max-width:100%; height:auto; display:block; }
+
+/* 連結：乾淨、無底線、hover 淡掉 */
+a{
+  color: var(--text);
+  text-decoration:none;
+  transition: opacity .2s;
+}
+a:hover{ opacity:.6; }
+
+/* =========================
+   2) 標題與文字
+   ========================= */
+h1{
+  font-size:40px;
+  margin:0 0 10px 0;
+  line-height:1.15;
+  letter-spacing:0.03em;
+  font-weight:500;
+}
+
+h2{
+  font-size:22px;
+  margin:0 0 10px 0;
+  font-weight:500;
+}
+/* Q&A 區塊後的大標題，給更多呼吸 */
+details + h2 {
+  margin-top: 48px;
+}
+/* 一般副標/輔助文字（你目前用在很多頁） */
+.muted{
+  color: var(--muted);
+  font-size:16px;
+  margin:0 0 18px 0;
+}
+
+/* 「更大氣」的副標（只用在你想強調的那幾行） */
+.lead{
+  color: var(--muted);
+  font-size:18px;
+  margin:0 0 22px 0;
+}
+
+.meta{
+  color:#666;
+  font-size:14px;
+  margin:0 0 14px 0;
+}
+
+.more{
+  margin-top:12px;
+  font-size:14px;
+  color:#666;
+}
+
+.small{
+  font-size:14px;
+  color:#666;
+}
+
+.center{ text-align:center; }
+.center a{ display:inline-block; }
+
+/* =========================
+   3) 導覽列（置中 + 單行 + 可左右滑）
+   ========================= */
+nav{
+  position: sticky;
+  top: 0;
+  background: rgba(255,255,255,.95);
+  backdrop-filter: blur(5px);
+  border-bottom:1px solid #f0f0f0;
+  z-index:999;
+}
+
+nav .nav-inner{
+  max-width: var(--wrap);
+  margin:0 auto;
+  padding:12px var(--pad);
+  display:flex;
+  justify-content:center;
+  gap:16px;
+  flex-wrap:nowrap;
+  overflow-x:auto;
+  -webkit-overflow-scrolling:touch;
+  white-space:nowrap;
+}
+nav .nav-inner::-webkit-scrollbar{ display:none; }
+
+/* =========================
+   4) 首頁國家區塊 + 六宮格卡片
+   ========================= */
+.country{ margin:38px 0 26px 0; }
+
+.grid6{
+  display:grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap:14px;
+}
+
+.card{ display:block; }
+
+.card img{
+  width:100%;
+  height:160px;
+  object-fit:cover;
+  border-radius:12px;
+  background:#f3f3f3;
+}
+
+.card .t{
+  margin-top:8px;
+  font-size:14px;
+  color:#333;
+}
+
+/* =========================
+   5) 盒子（plan/gear/support）
+   ========================= */
+.box{
+  padding:20px;
+  border:1px solid #f0f0f0;
+  border-radius:4px;
+  background:#fcfcfc;
+  margin:20px 0;
+}
+
+/* 數據列（可選） */
+.data-row{
+  display:flex;
+  justify-content:space-between;
+  border-bottom:1px solid #f5f5f5;
+  padding:8px 0;
+}
+.data-row:last-child{ border-bottom:none; }
+
+.num{
+  font-family:-apple-system, Arial, sans-serif;
+  font-size:14px;
+  color:#666;
+}
+
+/* =========================
+   6) 日誌專用：文章分段底線
+   用法：<article class="entry"> ... </article>
+   ========================= */
+.entry h2{
+  margin:40px 0 15px 0;
+  border-bottom:1px solid #eee;
+  padding-bottom:8px;
+}
+
+/* =========================
+   7) 前一篇 / 下一篇（pager）
+   ========================= */
+.pager{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  margin: 8px 0 20px 0;
+}
+.pager a{
+  font-size:14px;
+  color:#666;
+}
+.pager a:hover{ opacity:.6; }
+
+/* =========================
+   8) 響應式：平板
+   ========================= */
+@media (max-width: 860px){
+  main{ margin:22px auto; }
+  h1{ font-size:34px; }
+  .grid6{ grid-template-columns:repeat(2, 1fr); }
+  .card img{ height:150px; }
+}
+
+/* =========================
+   9) 手機：KPA 無襯線模式（你要的乾淨感）
+   ========================= */
+@media (max-width: 520px){
+  /* 文字：改成 PingFang / 黑體系，去掉「方塊明朝」觀感 */
+  body{
+    font-size:15px;
+    color:#333;
+    font-family:"PingFang TC","Heiti TC","Microsoft JhengHei",
+      -apple-system,BlinkMacSystemFont,system-ui,sans-serif;
+    -webkit-font-smoothing: antialiased;
+    line-height:1.8;
+  }
+
+  /* About 頁：手機版標題＋副標後多留兩行空白 */
+  body.narrow h1 + .muted {
+    margin-bottom: 3em;
+  }
+}
+
+ @media (max-width: 520px){
+
+  /* 版心：更像筆記（你範例：max-width 650 + padding 25） */
+  main{
+    max-width:650px;
+    margin:30px auto;
+    padding:0 25px;
+  }
+
+  /* 標題：更輕、更乾淨 */
+  h1{
+    font-size:1.5rem;
+    font-weight:400;
+    letter-spacing:0;
+    margin:0 0 18px 0;
+    color:#111;
+  }
+
+  /* 分段標題：帶底線，更像你的範例 */
+  h2{
+    font-size:1.05rem;
+    font-weight:500;
+    margin:32px 0 12px 0;
+    border-bottom:1px solid #eee;
+    padding-bottom:8px;
+  }
+
+  /* 副標：更淡 */
+  .muted{
+    color:#888;
+    font-size:0.95rem;
+    margin:0 0 18px 0;
+  }
+
+  /* 首頁六宮格：手機改單欄更舒服 */
+  .grid6{ grid-template-columns:1fr; }
+  .card img{ height:190px; }
+
+  /* 導覽列：間距略小 */
+  nav .nav-inner{ gap:18px; padding:12px 20px; }
+}
+
+.countdown-container{
+  text-align:center;
+  border:none;
+  padding:22px 14px;
+  border-radius:14px;
+  margin:22px 0 24px;
+  background:#fcfcfc;
+  box-sizing:border-box;
+}
+
+#countdown{
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
+               "Liberation Mono","Courier New", monospace;
+  font-size:1.6rem;
+  font-weight:400;
+  letter-spacing:2px;
+  color:#2c3e50;
+  white-space:nowrap;
+}
+
+/* 如果之後你想要「最後關頭」才呼吸，就用 .urgent 開關 */
+.countdown-container.urgent #countdown{
+  animation:pulse 6s infinite ease-in-out;
+}
+
+@media (max-width: 520px){
+  #countdown{
+    font-size:1.2rem;
+    letter-spacing:1px;
+  }
+  .countdown-container{
+    padding:20px 10px;
+  }
+}
+
+@keyframes pulse{
+  0%,100%{ opacity:1; }
+  50%{ opacity:.9; }
+}
+
+.lang-en {
+  display: none;
+}
+
+.lang-switch {
+  text-align: right;
+  margin-bottom: 12px;
+}
+
+.lang-switch button {
+  background: none;
+  border: 1px solid #999;
+  padding: 4px 10px;
+  font-size: 0.85rem;
+  cursor: pointer;
+}
+
+/* 英文模式：隱藏中文、顯示英文 */
+body.is-en .lang-zh { display: none; }
+body.is-en .lang-en { display: inline; }   /* span 用 inline */
+body.is-en .lang-en.block { display: block; } /* 需要段落就加 class="block" */
+
+/* =========================================
+   文學閱讀模式（只在桌機 / 平板生效）
+   手機一律回到 index 規格
+   ========================================= */
+
+@media (min-width: 521px){
+
+  body.narrow {
+    --wrap: 720px !important;
+    background-color: #fff !important;
+  }
+
+  body.narrow main {
+    margin: 80px auto !important; 
+    line-height: 2.2 !important;
+    letter-spacing: 0.03em;
+    text-align: left;
+  }
+
+  body.narrow h1, 
+  body.narrow h2,
+  body.narrow h3 {
+    text-align: left !important;
+    margin-left: 0 !important;
+    border-bottom: none !important;
+  }
+
+  body.narrow h1 {
+    font-size: 32px;
+    font-weight: 700;
+    margin-bottom: 20px;
+  }
+
+  body.narrow .author { 
+    display: block;
+    font-size: 18px;
+    font-weight: 500;
+    margin-bottom: 60px;
+    color: #000;
+  }
+
+  body.narrow h2 {
+    font-size: 20px;
+    margin-top: 60px !important;
+    margin-bottom: 30px !important;
+  }
+
+  body.narrow p {
+    text-indent: 0 !important;
+    margin-bottom: 1.5em;
+  }
+
+}
+
+/* 修改卡片容器，讓標題與描述垂直排列 */
+.narrow a.card .info {
+  display: flex;
+  flex-direction: column;
+  gap: 4px; /* 標題與描述的間距 */
+}
+
+/* 標題：保持清晰 */
+.narrow a.card .t {
+  font-size: 17px;
+  color: #222;
+  font-weight: 600;
+}
+
+/* 描述文字：小一點、灰一點、更有呼吸感 */
+.narrow a.card .d {
+  font-size: 13px;
+  color: #888; /* 灰色調 */
+  line-height: 1.5;
+  font-weight: 400;
+  /* 限制只顯示兩行，多出的文字顯示省略號 */
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* 響應式微調 */
+@media (max-width: 640px) {
+  .narrow a.card .d {
+    font-size: 12px; /* 手機上再小一點點 */
+  }
+}
+
+.timestamp {
+  font-size: 0.85rem;
+  color: #888;
+  letter-spacing: 0.05em;
+  margin-bottom: 0.5rem;
+}
+
+/* 行前日誌首頁：縮小 2026 標題下的副標 */
+h1 + .muted {
+  font-size: 0.85rem;
+  margin-top: 0.3em;
+}
+
+/* 行前準備首頁（只此頁）：桌機改成縮圖左、文字右；其他頁維持六宮格 */
+@media (min-width: 521px){
+  body.prep-index .grid6{
+    grid-template-columns: 1fr;
+  }
+
+  body.prep-index a.card{
+    display: grid;
+    grid-template-columns: 120px 1fr;
+    gap: 14px;
+    align-items: center;
+    padding: 8px 0;
+  }
+
+  body.prep-index a.card img{
+    width: 120px;
+    height: 80px;
+    object-fit: cover;
+    border-radius: 12px;
+  }
+
+  body.prep-index a.card .t{
+    margin: 0;
+    font-size: 17px;
+    font-weight: 600;
+    color: #222;
+    line-height: 1.4;
+  }
+}
+
+/* 修改後的超連結樣式 */
+a.ref {
+  color: #A52A2A;        /* 您選擇的紅色 (此處以經典職人紅為例) */
+  text-decoration: none;  /* 去掉底線，看起來更俐落 */
+  transition: color 0.3s; /* 讓顏色切換更平滑 */
+}
+
+/* 當滑鼠移上去時的顏色變化 */
+a.ref:hover {
+  color: #FF4500;        /* 懸停時變為亮橘紅，增加點擊暗示 */
+  text-decoration: underline; /* 懸停時出現底線 */
+}
+
+figure.map {
+  margin: 3em 0;
+}
+
+figure.map iframe {
+  width: 100%;
+  height: 360px;
+  border: 0;
+}
+
+figure.map figcaption {
+  margin-top: 0.75em;
+  font-size: 0.9em;
+  color: #555;
+}
+
+/* 手機 */
+@media (max-width: 520px) {
+  figure.map iframe {
+    height: 240px;
+  }
+}
+
+figure.photo {
+  margin: 3em 0;
+}
+
+/* 手機：日誌內文取消 <br> 強制分行 */
+@media (max-width: 520px){
+  .country p br{
+    display: none;
+  }
+}
+
+.muted{
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}

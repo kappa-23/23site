@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="./style.css?v=11">
+  <title>關於｜第二十三號</title>
+
+  <link rel="icon" href="./assets/icons/favicon-v2.ico" sizes="any">
+  <link rel="apple-touch-icon" href="./assets/icons/apple-touch-icon.png" sizes="180x180">
+
+  <style>
+    .about-manifesto {
+  min-height: 60vh;
+  margin-top: 30vh;
+  padding-bottom: 20vh;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.manifesto-en {
+  font-style: italic;
+  font-size: 1.2rem;
+  letter-spacing: 0.08em;
+  line-height: 1.8;
+  color: #111;
+  margin-top: 2.5rem;   /* 讓這一句往下兩行左右 */
+}
+  </style>
+</head>
+
+<script>
+  fetch('/nav.html')
+    .then(res => res.text())
+    .then(html => {
+      document.getElementById('nav-placeholder').innerHTML = html;
+    });
+</script>
+
+<body id="top" class="narrow">
+<div id="nav-placeholder"></div>
+
+  <main>
+    <h1>關於</h1>
+    <p class="muted">A NOTE ON WHY THIS EXISTS</p>
+
+    <section>
+      <div class="block">
+        <p>我關心真實如何被如實看見。</p>
+
+        <p>我相信人的存在，若從內在的驅動出發，經由行動在時間與空間中留下痕跡，最終將形塑世界的樣貌。</p>
+
+        <p>世界的動力來自每一個個體是否忠於自身。當一個人如實地活著，他的生命自然會完成自己。</p>
+
+        
+        <p>我選擇移動，讓身體成為映照世界的場所。</p>
+        
+        <p>有些事物無法被測量，只能在行走之中顯現。</p>
+        
+
+        <p>有句話是這麼說的：</p>
+      </div>
+    </section>
+
+    <section class="about-manifesto">
+      <p class="manifesto-en">I open at the close.</p>
+    </section>
+
+    <p class="more">
+      <a href="./plan.html">→ 回到計畫簡介</a>
+    </p>
+  </main>
+</body>
+</html>

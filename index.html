@@ -1,0 +1,230 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="/style.css?v=11">
+  <title>第二十三號</title>
+
+  <!-- Tab icon -->
+  <link rel="icon" href="/assets/icons/favicon-v2.ico" sizes="any">
+
+  <!-- iOS add to home screen -->
+  <link rel="apple-touch-icon" href="/assets/icons/apple-touch-icon.png" sizes="180x180">
+
+  <!-- Social share preview -->
+  <meta property="og:title" content="第二十三號">
+  <meta property="og:image" content="/assets/icons/og-image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+
+  <!-- Optional: browser UI color -->
+  <meta name="theme-color" content="#f7f4ef">
+</head>
+<body id="top">
+  <div id="nav-placeholder"></div>
+
+  <main>
+    <h1>第二十三號</h1>
+    <p class="muted">RIDING LOG｜人類精神採集計畫｜京都 - 巴黎</p>
+
+    <!-- 出發倒數（T-）/ 出發後（κ-Day +） -->
+    <section class="countdown-container" aria-label="Departure Countdown">
+      <div class="label">出發倒數 · Departure Countdown</div>
+      <div id="countdown">載入中…</div>
+    </section>
+
+    <!-- 日本 -->
+    <section class="country" id="jp">
+      <h2>日本</h2>
+      <p class="meta">最近 6 篇（本次計畫）</p>
+      <div class="grid6">
+        <!-- 把「新日誌卡片」貼在這行下面（最新的放最上面） -->
+      </div>
+      <p class="more"><a href="./country/jp.html">日本段更多 →</a></p>
+    </section>
+
+    <!-- 韓國 -->
+    <section class="country" id="kr">
+      <h2>韓國</h2>
+      <p class="meta">最近 6 篇</p>
+      <div class="grid6"></div>
+      <p class="more"><a href="./country/kr.html">韓國段更多 →</a></p>
+    </section>
+
+    <!-- 中國 -->
+    <section class="country" id="cn">
+      <h2>中國</h2>
+      <p class="meta">最近 6 篇</p>
+      <div class="grid6"></div>
+      <p class="more"><a href="./country/cn.html">中國段更多 →</a></p>
+    </section>
+
+    <!-- 蒙古 -->
+    <section class="country" id="mn">
+      <h2>蒙古</h2>
+      <p class="meta">最近 6 篇</p>
+      <div class="grid6"></div>
+      <p class="more"><a href="./country/mn.html">蒙古段更多 →</a></p>
+    </section>
+
+    <!-- 俄羅斯 -->
+    <section class="country" id="ru">
+      <h2>俄羅斯</h2>
+      <p class="meta">最近 6 篇</p>
+      <div class="grid6"></div>
+      <p class="more"><a href="./country/ru.html">俄羅斯段更多 →</a></p>
+    </section>
+
+    <!-- 哈薩克 -->
+    <section class="country" id="kz">
+      <h2>哈薩克</h2>
+      <p class="meta">最近 6 篇</p>
+      <div class="grid6"></div>
+      <p class="more"><a href="./country/kz.html">哈薩克段更多 →</a></p>
+    </section>
+
+    <!-- 吉爾吉斯 -->
+    <section class="country" id="kg">
+      <h2>吉爾吉斯</h2>
+      <p class="meta">最近 6 篇</p>
+      <div class="grid6"></div>
+      <p class="more"><a href="./country/kg.html">吉爾吉斯段更多 →</a></p>
+    </section>
+
+    <!-- 烏茲別克 -->
+    <section class="country" id="uz">
+      <h2>烏茲別克</h2>
+      <p class="meta">最近 6 篇</p>
+      <div class="grid6"></div>
+      <p class="more"><a href="./country/uz.html">烏茲別克段更多 →</a></p>
+    </section>
+
+    <!-- 土耳其 -->
+    <section class="country" id="tr">
+      <h2>土耳其</h2>
+      <p class="meta">最近 6 篇</p>
+      <div class="grid6"></div>
+      <p class="more"><a href="./country/tr.html">土耳其段更多 →</a></p>
+    </section>
+
+    <!-- 法國 -->
+    <section class="country" id="fr">
+      <h2>法國</h2>
+      <p class="meta">最近 6 篇</p>
+      <div class="grid6"></div>
+      <p class="more"><a href="./country/fr.html">法國段更多 →</a></p>
+    </section>
+
+    <!-- 美國 -->
+    <section class="country" id="us">
+      <h2>美國</h2>
+      <p class="meta">最近 6 篇</p>
+      <div class="grid6"></div>
+      <p class="more"><a href="./country/us.html">美國段更多 →</a></p>
+    </section>
+
+    <p style="margin-top:32px;"><a href="./support.html">支持</a></p>
+    <p class="more"><a href="#top">↑ 回到頂部</a></p>
+  </main>
+
+  <script>
+    // 固定目標時間：台北時間 2026/03/05 00:00 (+08:00)
+    const DEPARTURE_MS = new Date("2026-03-05T00:00:00+08:00").getTime();
+    const el = document.getElementById("countdown");
+
+    function pad2(n){ return String(n).padStart(2, "0"); }
+
+    function formatTminus(ms){
+      let distance = ms;
+
+      const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+      distance %= (1000 * 60 * 60 * 24);
+
+      const hours = Math.floor(distance / (1000 * 60 * 60));
+      distance %= (1000 * 60 * 60);
+
+      const minutes = Math.floor(distance / (1000 * 60));
+      distance %= (1000 * 60);
+
+      const seconds = Math.floor(distance / 1000);
+
+      return `T- ${days}D ${pad2(hours)}H ${pad2(minutes)}M ${pad2(seconds)}S`;
+    }
+
+    function formatKdayPlus(msAfter){
+      // msAfter: 出發後經過的毫秒數（>=0）
+      let s = Math.floor(msAfter / 1000);
+
+      // κ-Day 從 001 開始：第 0~86399 秒都屬於 Day 001
+      const dayIndex = Math.floor(s / 86400) + 1;
+      const dayStr = String(dayIndex).padStart(3, "0");
+
+      const withinDay = s % 86400;
+      const hh = Math.floor(withinDay / 3600);
+      const mm = Math.floor((withinDay % 3600) / 60);
+      const ss = withinDay % 60;
+
+      return `κ-Day ${dayStr} · +${pad2(hh)}:${pad2(mm)}:${pad2(ss)}`;
+    }
+
+    function render(){
+      const now = Date.now();
+      const diff = DEPARTURE_MS - now;
+
+      if (diff > 0){
+        el.textContent = formatTminus(diff);
+      } else {
+        el.textContent = formatKdayPlus(-diff);
+      }
+    }
+
+    render();
+    setInterval(render, 250); // 想省資源可改 1000
+  </script>
+  <script>
+  fetch('/nav.html')
+    .then(res => res.text())
+    .then(html => {
+      document.getElementById('nav-placeholder').innerHTML = html;
+
+      // 啟動下拉選單行為
+      const dropdowns = document.querySelectorAll('.nav-dd');
+
+      dropdowns.forEach(dd => {
+        const btn = dd.querySelector('.nav-btn');
+        const menu = dd.querySelector('.nav-menu');
+        if(!btn || !menu) return;
+
+        btn.addEventListener('click', (e) => {
+          e.stopPropagation();
+          const open = btn.getAttribute('aria-expanded') === 'true';
+
+          dropdowns.forEach(other => {
+            const ob = other.querySelector('.nav-btn');
+            const om = other.querySelector('.nav-menu');
+            if(ob && om){
+              ob.setAttribute('aria-expanded', 'false');
+              om.hidden = true;
+            }
+          });
+
+          btn.setAttribute('aria-expanded', String(!open));
+          menu.hidden = open;
+        });
+      });
+
+      document.addEventListener('click', () => {
+        dropdowns.forEach(dd => {
+          const btn = dd.querySelector('.nav-btn');
+          const menu = dd.querySelector('.nav-menu');
+          if(btn && menu){
+            btn.setAttribute('aria-expanded', 'false');
+            menu.hidden = true;
+          }
+        });
+      });
+    });
+</script>
+</body>
+</html>

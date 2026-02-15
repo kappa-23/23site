@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="/style.css?v=11">
+  <title>裝備挑選｜行前準備｜第二十三號</title>
+
+  <link rel="icon" href="/assets/icons/favicon-v2.ico" sizes="any">
+  <link rel="apple-touch-icon" href="/assets/icons/apple-touch-icon.png" sizes="180x180">
+</head>
+
+<body id="top" class="narrow">
+  <div id="nav-placeholder"></div>
+
+  <main>
+    <h1>裝備挑選</h1>
+    <p class="muted">Equipment selection</p>
+
+    <section class="country">
+      <h2>2026.02｜刪掉一些東西</h2>
+      <p class="meta">今天又刪掉了一些裝備。刪的不是物件，是幻想。</p>
+      <p>
+        裝備清單最後不是「我想要什麼」，而是「我願意承擔什麼」。
+        你背的重量，會在風裡、坡上、疲勞裡，變成心理的噪音。
+      </p>
+    </section>
+
+    <section class="country">
+      <h2>核心模組</h2>
+      <p class="meta">我先把裝備拆成幾個模組，而不是一長串清單。</p>
+      <ul>
+        <li><strong>睡眠與保暖</strong>：帳篷／睡袋／睡墊／防潮</li>
+        <li><strong>修理與備用</strong>：補胎／工具／耗材／關鍵備件</li>
+        <li><strong>水與能量</strong>：容量／補給節奏／最壞情境</li>
+        <li><strong>文件與電子</strong>：備份／充電／防水</li>
+      </ul>
+    </section>
+
+    <section class="country">
+      <h2>待補：我的刪減規則</h2>
+      <p class="meta">這一段我想寫得很誠實，包含我捨不得丟的東西。</p>
+      <ul>
+        <li>□ 可替代的就不帶第二個</li>
+        <li>□ 只有「舒服」沒有「必要」的先淘汰</li>
+        <li>□ 每增加一樣，就要說出它換走了什麼</li>
+      </ul>
+    </section>
+
+    <nav class="pager">
+  <a class="prev" href="./medical.html">← 身體醫療</a>
+  <span></span>
+</nav>
+    <p class="more"><a href="#top">↑ 回到頂部</a></p>
+  </main>
+
+  <script>
+    fetch('/nav.html')
+      .then(res => res.text())
+      .then(html => { document.getElementById('nav-placeholder').innerHTML = html; });
+  </script>
+</body>
+</html>
