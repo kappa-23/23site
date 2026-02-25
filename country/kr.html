@@ -20,6 +20,12 @@
     <p class="more"><a href="#top">↑ 回到頂部</a></p>
   </main>
 
-  <script src="/nav.js"></script>
+  <script>
+    fetch('/nav.html')
+      .then(res => res.text())
+      .then(html => {
+        document.getElementById('nav-placeholder').innerHTML = html;
+      });
+  </script>
 </body>
 </html>
