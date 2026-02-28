@@ -43,20 +43,13 @@ main{
 
 img{ max-width:100%; height:auto; display:block; }
 
-/* 全站連結 */
+/* 連結：乾淨、無底線、hover 淡掉 */
 a{
-  color: #A52A2A;
+  color: var(--text);
   text-decoration:none;
   transition: opacity .2s;
 }
-
-a:visited{
-  color:#A52A2A;
-}
-
-a:hover{
-  opacity:.6;
-}
+a:hover{ opacity:.6; }
 
 /* =========================
    2) 標題與文字
