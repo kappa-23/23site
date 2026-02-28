@@ -168,12 +168,35 @@
     <div class="muted">GEAR LOGISTICS</div>
 
     <div class="box" id="summaryBox">
-      <div class="data-row"><div>Base weight</div><div class="num"><strong id="baseW">—</strong> g</div></div>
-      <div class="data-row"><div>Worn</div><div class="num"><strong id="wornW">—</strong> g</div></div>
-      <div class="data-row"><div>Consumable</div><div class="num"><strong id="consW">—</strong> g</div></div>
-      <div class="data-row"><div>Total</div><div class="num"><strong id="totalW">—</strong> g</div></div>
-      <p class="small" style="margin-top:10px;">註：目前仍在變動中，之後應該也會隨著行程更新配置。</p>
-    </div>
+  <div class="data-row">
+    <div>Bike</div>
+    <div class="num"><strong id="bikeW">—</strong> g</div>
+  </div>
+
+  <div class="data-row">
+    <div>Base weight</div>
+    <div class="num"><strong id="baseW">—</strong> g</div>
+  </div>
+
+  <div class="data-row">
+    <div>Worn</div>
+    <div class="num"><strong id="wornW">—</strong> g</div>
+  </div>
+
+  <div class="data-row">
+    <div>Consumable</div>
+    <div class="num"><strong id="consW">—</strong> g</div>
+  </div>
+
+  <div class="data-row">
+    <div>Total</div>
+    <div class="num"><strong id="totalW">—</strong> g</div>
+  </div>
+
+  <p class="small" style="margin-top:10px;">
+    註：目前仍在變動中，之後應該也會隨著行程更新配置。
+  </p>
+</div>
 
     <div class="gear-controls">
       <button type="button" class="btn-mini" id="expandAll">全部展開</button>
@@ -1938,45 +1961,53 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  function render(){
-    let base=0, worn=0, cons=0, total=0;
+function render(){
+  let base=0, worn=0, cons=0, total=0;
 
-    // 分類小計
-    document.querySelectorAll('.gear-cat').forEach(catEl => {
-      let catSum = 0;
-      catEl.querySelectorAll('.gear-item').forEach(row => {
-        const w = toNum(row.querySelector('.w')?.value);
-        catSum += w;
-      });
-      const catId = catEl.getAttribute('data-cat');
-      const out = document.querySelector('.cat-sum[data-cat="'+catId+'"]');
-      if(out) out.textContent = Math.round(catSum);
-    });
-
-    // 全局小計（依 type）
-    document.querySelectorAll('.gear-item').forEach(row => {
+  // 分類小計
+  document.querySelectorAll('.gear-cat').forEach(catEl => {
+    let catSum = 0;
+    catEl.querySelectorAll('.gear-item').forEach(row => {
       const w = toNum(row.querySelector('.w')?.value);
-      const t = row.querySelector('.t')?.value || row.getAttribute('data-type') || 'base';
-
-      total += w;
-      if(t === 'worn') worn += w;
-      else if(t === 'consumable') cons += w;
-      else base += w;
+      catSum += w;
     });
+    const catId = catEl.getAttribute('data-cat');
+    const out = document.querySelector('.cat-sum[data-cat="'+catId+'"]');
+    if(out) out.textContent = Math.round(catSum);
+  });
 
-    // ✅ 全部加保險：元素不存在就略過，別讓整段炸掉
-    const baseEl = document.getElementById('baseW');
-    const wornEl = document.getElementById('wornW');
-    const consEl = document.getElementById('consW');
-    const totalEl = document.getElementById('totalW');
+  // 全局小計（依 type）
+  document.querySelectorAll('.gear-item').forEach(row => {
+    const w = toNum(row.querySelector('.w')?.value);
+    const t = row.querySelector('.t')?.value || row.getAttribute('data-type') || 'base';
 
-    if(baseEl) baseEl.textContent = Math.round(base);
-    if(wornEl) wornEl.textContent = Math.round(worn);
-    if(consEl) consEl.textContent = Math.round(cons);
-    if(totalEl) totalEl.textContent = Math.round(total);
+    total += w;
+    if(t === 'worn') worn += w;
+    else if(t === 'consumable') cons += w;
+    else base += w;
+  });
 
-    markEmptyWeights();
-  }
+  // ✅ 全部加保險：元素不存在就略過，別讓整段炸掉
+  const baseEl = document.getElementById('baseW');
+  const wornEl = document.getElementById('wornW');
+  const consEl = document.getElementById('consW');
+  const totalEl = document.getElementById('totalW');
+
+  if(baseEl) baseEl.textContent = Math.round(base);
+  if(wornEl) wornEl.textContent = Math.round(worn);
+  if(consEl) consEl.textContent = Math.round(cons);
+  if(totalEl) totalEl.textContent = Math.round(total);
+
+  // ✅ 車身重量（分類 0）
+  let bike = 0;
+  document.querySelectorAll('.gear-cat[data-cat="0"] .w').forEach(inp => {
+    bike += toNum(inp.value);
+  });
+  const bikeEl = document.getElementById('bikeW');
+  if (bikeEl) bikeEl.textContent = Math.round(bike);
+
+  markEmptyWeights();
+}
 
   // 監聽：重量輸入與類型切換
   document.addEventListener('input', (e) => {
