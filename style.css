@@ -672,3 +672,9 @@ figure.photo {
 @media (max-width: 520px){
   .map-embed{ aspect-ratio: 3 / 2; } /* 手機稍微高一點，仍然橫向 */
 }
+
+/* 文章內連結一律紅色（放在 style.css 最底部） */
+main a:link,
+main a:visited{
+  color:#A52A2A;
+}
