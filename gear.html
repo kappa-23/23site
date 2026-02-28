@@ -1987,26 +1987,27 @@ function render(){
     else base += w;
   });
 
-  // ✅ 全部加保險：元素不存在就略過，別讓整段炸掉
-  const baseEl = document.getElementById('baseW');
-  const wornEl = document.getElementById('wornW');
-  const consEl = document.getElementById('consW');
-  const totalEl = document.getElementById('totalW');
+// ✅ 車身重量（分類 0）
+let bike = 0;
+document.querySelectorAll('.gear-cat[data-cat="0"] .w').forEach(inp => {
+  bike += toNum(inp.value);
+});
+const bikeEl = document.getElementById('bikeW');
+if (bikeEl) bikeEl.textContent = Math.round(bike);
 
-  if(baseEl) baseEl.textContent = Math.round(base);
-  if(wornEl) wornEl.textContent = Math.round(worn);
-  if(consEl) consEl.textContent = Math.round(cons);
-  if(totalEl) totalEl.textContent = Math.round(total);
+// ✅ 全部加保險：元素不存在就略過，別讓整段炸掉
+const baseEl = document.getElementById('baseW');
+const wornEl = document.getElementById('wornW');
+const consEl = document.getElementById('consW');
+const totalEl = document.getElementById('totalW');
 
-  // ✅ 車身重量（分類 0）
-  let bike = 0;
-  document.querySelectorAll('.gear-cat[data-cat="0"] .w').forEach(inp => {
-    bike += toNum(inp.value);
-  });
-  const bikeEl = document.getElementById('bikeW');
-  if (bikeEl) bikeEl.textContent = Math.round(bike);
+// ✅ Base 扣掉車身
+if(baseEl) baseEl.textContent = Math.round(base - bike);
+if(wornEl) wornEl.textContent = Math.round(worn);
+if(consEl) consEl.textContent = Math.round(cons);
+if(totalEl) totalEl.textContent = Math.round(total);
 
-  markEmptyWeights();
+markEmptyWeights();
 }
 
   // 監聽：重量輸入與類型切換
