@@ -707,16 +707,3 @@ p.more a:visited,
 a.card:visited {
   color: var(--text);
 }
-
-/* ===== subtitles (final override) ===== */
-.muted{
-  color: var(--muted, #888);
-  font-size: 0.95rem;
-  margin: 0 0 18px 0;
-}
-
-/* 英文副標：統一全大寫（只影響有 lang-en 的） */
-.muted.lang-en{
-  text-transform: uppercase;
-  letter-spacing: 0.06em;
-}
