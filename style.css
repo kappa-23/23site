@@ -692,3 +692,18 @@ main p a:visited{
 main p a:hover{
   opacity:.6;
 }
+
+/* ===== 功能性連結：維持黑色（覆蓋 main p a 的紅色） ===== */
+nav.pager a,
+p.more a,
+.topnav a,
+a.card {
+  color: var(--text);
+}
+
+nav.pager a:visited,
+p.more a:visited,
+.topnav a:visited,
+a.card:visited {
+  color: var(--text);
+}
