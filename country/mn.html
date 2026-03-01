@@ -3,11 +3,12 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="/style.css?v=11">
+
+  <link rel="stylesheet" href="../style.css?v=11">
   <title>蒙古｜第二十三號</title>
 
-  <link rel="icon" href="/assets/icons/favicon-v2.ico" sizes="any">
-  <link rel="apple-touch-icon" href="/assets/icons/apple-touch-icon.png" sizes="180x180">
+  <link rel="icon" href="../assets/icons/favicon-v2.ico" sizes="any">
+  <link rel="apple-touch-icon" href="../assets/icons/apple-touch-icon.png" sizes="180x180">
 </head>
 
 <body id="top" class="narrow">
@@ -17,11 +18,24 @@
     <h1>蒙古</h1>
     <p class="muted"></p>
 
+    <!-- 文章卡片區 -->
+    <div class="grid6">
+
+      <!-- 範例卡片（之後新增文章就貼在最上面） -->
+      <!--
+      <a class="card" href="../log/mn/2026-04-20.html">
+  <img src="../assets/mn/2026-04-20.jpg" alt="">
+  <div class="card-title">κ-Day 47｜標題</div>
+</a>
+      -->
+
+    </div>
+
     <p class="more"><a href="#top">↑ 回到頂部</a></p>
   </main>
 
   <script>
-    fetch('/nav.html')
+    fetch('../nav.html')
       .then(res => res.text())
       .then(html => {
         document.getElementById('nav-placeholder').innerHTML = html;

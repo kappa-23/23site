@@ -707,3 +707,8 @@ p.more a:visited,
 a.card:visited {
   color: var(--text);
 }
+
+.lang-en{
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}

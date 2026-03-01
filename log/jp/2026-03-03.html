@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="../../style.css?v=11">
+  <title>κ-Day 001｜標題｜第二十三號</title>
+
+  <link rel="icon" href="../../assets/icons/favicon-v2.ico" sizes="any">
+  <link rel="apple-touch-icon" href="../../assets/icons/apple-touch-icon.png" sizes="180x180">
+</head>
+
+<body class="narrow">
+  <div id="nav-placeholder"></div>
+
+  <main>
+    <h1>κ-Day 001｜標題</h1>
+    <p class="meta">2026.03.05｜日本</p>
+
+    <p>正文開始。</p>
+
+    <p>第二段。</p>
+
+    <figure>
+      <img src="../../assets/jp/2026-03-05.jpg" alt="">
+    </figure>
+
+    <nav class="pager">
+      <a class="prev" href="#">← 上一篇</a>
+      <a class="next" href="#">下一篇 →</a>
+    </nav>
+
+    <p class="more"><a href="../../country/jp.html">← 回日本段</a></p>
+  </main>
+
+  <script>
+    fetch("../../nav.html")
+      .then(res => res.text())
+      .then(html => {
+        document.getElementById("nav-placeholder").innerHTML = html;
+      });
+  </script>
+</body>
+</html>
