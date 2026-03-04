@@ -707,3 +707,13 @@ p.more a:visited,
 a.card:visited {
   color: var(--text);
 }
+
+figure{
+  margin: 18px 0;
+}
+
+figure img{
+  display: block;
+  width: 100%;
+  height: auto;
+}
